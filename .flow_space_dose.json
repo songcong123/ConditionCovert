@@ -1,0 +1,21 @@
+{
+ "a_air": -0.2687,
+ "a_air_A": -0.124,
+ "c": 0.0606,
+ "b_km": -0.00665,
+ "r2": 0.239,
+ "corr": -0.488,
+ "RC": 2.0,
+ "ratio_air": 0.461,
+ "ratio_zone": 0.716,
+ "rA_med": 2.032,
+ "rB_med": 7.112,
+ "n_grad": 98,
+ "js_base": 0.00373,
+ "js_model": 0.0017,
+ "js_direct": 6e-05,
+ "core_check": {
+  "pred": 0.0421,
+  "actual": 0.0712
+ }
+}

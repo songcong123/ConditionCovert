@@ -1,0 +1,122 @@
+<mxfile host="Electron" agent="zcode">
+  <diagram id="flow-band" name="方案流程带">
+    <mxGraphModel dx="1700" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="T" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" value="方案总流程：常态基线 P₀ × 条件调整 f(c)　——　任意外生条件通用（天气 / 事件 / 政策 …）" vertex="1">
+          <mxGeometry height="30" width="1300" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="SUBT" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" value="核心哲学：只改参数，不改分布形状——换条件＝换参数，不用重新学分布" vertex="1">
+          <mxGeometry height="24" width="800" x="20" y="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="IN1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;常态行程大数据&lt;/b&gt;&lt;br&gt;时刻/起终点/里程/时长&lt;br&gt;（例：纽约 TLC 2.61 亿行）" vertex="1">
+          <mxGeometry height="100" width="200" x="20" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="IN2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;外生条件 c&lt;/b&gt;&lt;br&gt;天气 / 活动 / 政策 …&lt;br&gt;＋条件档案：&lt;br&gt;剂量曲线 / 事件窗×zone" vertex="1">
+          <mxGeometry height="130" width="200" x="20" y="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="S1H" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;" value="Step 1  常态基线（晴天底片）" vertex="1">
+          <mxGeometry height="26" width="340" x="250" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="① 出发时间：何时出发" vertex="1">
+          <mxGeometry height="32" width="320" x="260" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=6;" value="② 空间分布：从哪出发" vertex="1">
+          <mxGeometry height="32" width="320" x="260" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="③ 行程距离：走多远" vertex="1">
+          <mxGeometry height="32" width="320" x="260" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=10;align=left;spacingLeft=6;" value="④ 速度：多快" vertex="1">
+          <mxGeometry height="32" width="320" x="260" y="226" as="geometry" />
+        </mxCell>
+
+        <mxCell id="S2H" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;" value="Step 2  条件调整（只改参数，不改形状）" vertex="1">
+          <mxGeometry height="26" width="400" x="620" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=20;" value="① 总量：逐小时 ×系数" vertex="1">
+          <mxGeometry height="32" width="380" x="630" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="S2b1" parent="1" style="ellipse;fillColor=#4472c4;strokeColor=white;strokeWidth=1.5;fontSize=9;fontColor=#ffffff;fontStyle=1;" value="1" vertex="1">
+          <mxGeometry height="20" width="20" x="636" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=20;" value="② 空间：逐区域 ×乘子" vertex="1">
+          <mxGeometry height="32" width="380" x="630" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="S2b2" parent="1" style="ellipse;fillColor=#9673a6;strokeColor=white;strokeWidth=1.5;fontSize=9;fontColor=#ffffff;fontStyle=1;" value="2" vertex="1">
+          <mxGeometry height="20" width="20" x="636" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=20;" value="③ 距离：3 个可调参数" vertex="1">
+          <mxGeometry height="32" width="380" x="630" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="S2b3" parent="1" style="ellipse;fillColor=#ed7d31;strokeColor=white;strokeWidth=1.5;fontSize=9;fontColor=#ffffff;fontStyle=1;" value="3" vertex="1">
+          <mxGeometry height="20" width="20" x="636" y="194" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=10;align=left;spacingLeft=20;" value="④ 速度：整体 ×折扣系数" vertex="1">
+          <mxGeometry height="32" width="380" x="630" y="226" as="geometry" />
+        </mxCell>
+        <mxCell id="S2b4" parent="1" style="ellipse;fillColor=#70ad47;strokeColor=white;strokeWidth=1.5;fontSize=9;fontColor=#ffffff;fontStyle=1;" value="4" vertex="1">
+          <mxGeometry height="20" width="20" x="636" y="232" as="geometry" />
+        </mxCell>
+
+        <mxCell id="S3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;Step 3 采样&lt;/b&gt;&lt;br&gt;(时刻, 起点, 距离, 速度)&lt;br&gt;时长 = 距离 ÷ 速度" vertex="1">
+          <mxGeometry height="80" width="190" x="1060" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="S4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;Step 4 终点配对&lt;/b&gt;&lt;br&gt;按起点＋距离&lt;br&gt;在地图上选终点" vertex="1">
+          <mxGeometry height="80" width="190" x="1060" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="S5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;" value="Step 5 三道校验&lt;br&gt;→ 输出条件轨迹集" vertex="1">
+          <mxGeometry height="80" width="190" x="1060" y="290" as="geometry" />
+        </mxCell>
+
+        <mxCell id="NOTE" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=10;align=left;spacingLeft=6;fontStyle=2;" value="校验不通过 → 回 Step 2 修正；用可观测的真实雨天做盲测，通过才外推到极端" vertex="1">
+          <mxGeometry height="36" width="680" x="1060" y="390" as="geometry" />
+        </mxCell>
+
+        <mxCell id="LEG" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=10;align=left;spacingLeft=6;" value="色彩约定：蓝＝出发时间　紫＝空间分布　橙＝行程距离　绿＝速度　黄＝条件输入　灰＝通用流程" vertex="1">
+          <mxGeometry height="36" width="1300" x="20" y="450" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" edge="1" parent="1" source="IN1" target="S1H" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="常态样本">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="IN2" target="S2H" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="230" y="285" /><mxPoint x="230" y="60" /><mxPoint x="820" y="60" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="S1r1" target="S2r1" style="rounded=1;html=1;strokeWidth=2;strokeColor=#6c8ebf;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="S1r2" target="S2r2" style="rounded=1;html=1;strokeWidth=2;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="S1r3" target="S2r3" style="rounded=1;html=1;strokeWidth=2;strokeColor=#ed7d31;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="S1r4" target="S2r4" style="rounded=1;html=1;strokeWidth=2;strokeColor=#70ad47;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="S2r1" target="S3" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#6c8ebf;exitX=1;exitY=0.5;entryX=0;entryY=0.2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="S2r2" target="S3" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.4;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="S2r3" target="S3" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#ed7d31;exitX=1;exitY=0.5;entryX=0;entryY=0.6;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="S2r4" target="S3" style="rounded=1;html=1;strokeWidth=1.5;strokeColor=#70ad47;exitX=1;exitY=0.5;entryX=0;entryY=0.8;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="S3" target="S4" style="rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="(时刻,起点,距离,速度)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="S4" target="S5" style="rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="完整五元组">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,67 @@
+[
+ {
+  "page": 1,
+  "kw": "regularity",
+  "text": "We ﬁnd that in contrast with the random trajectories predicted by the prevailing L´evy ﬂight and random walk models [7], human trajectories show a high degree of temporal and spatial regularity, each individual being characterized by a time independent characteristic length scale and a signiﬁcant prob- ability to return to a few highly frequented locations."
+ },
+ {
+  "page": 1,
+  "kw": "probability distribution",
+  "text": "After correcting for differences in travel distances and the inherent anisotropy of each trajectory, the individual travel patterns collapse into a single spatial probability distribution, indicating that despite the diversity of their travel history, humans follow simple reproducible patterns."
+ },
+ {
+  "page": 3,
+  "kw": "jump size",
+  "text": "Each individual follows a L´evy trajectory with jump size distribution given by (1)."
+ },
+ {
+  "page": 3,
+  "kw": "radius of gyration",
+  "text": "To distinguish between hypotheses A, B and C we calculated the radius of gyration for each user (see Methods), interpreted as the typical distance traveled by user a when observed up to time t (Fig."
+ },
+ {
+  "page": 3,
+  "kw": "radius of gyration",
+  "text": "Next, we determined the radius of gyration distribution P(rg) by calculating rg for all users in samples D1 and D2, ﬁnding that they also can be approximated with a truncated power-law P(rg) = (rg + r0 g)−βr exp (−rg/κ), (2) with r0 g = 5.8 km, βr = 1.65 ± 0.15 and κ = 350 km (Fig."
+ },
+ {
+  "page": 3,
+  "kw": "high degree",
+  "text": "L´evy ﬂights are characterized by a high degree of intrinsic heterogeneity, raising the possibility that (2) could emerge from an ensemble of identical agents, each following a L´evy trajectory."
+ },
+ {
+  "page": 3,
+  "kw": "truncated power law",
+  "text": "We ﬁnd that an en- semble of L´evy agents display a signiﬁcant degree of heterogeneity in rg, yet is not sufﬁcient to explain the truncated power law distribution P(rg) exhibited by the mobile phone users."
+ },
+ {
+  "page": 4,
+  "kw": "jump size",
+  "text": "2b, we have chosen users with similar asymptotic rg(T) after T = 6 months, and measured the jump size distribution P(∆r|rg) for each group."
+ },
+ {
+  "page": 4,
+  "kw": "probability distribution",
+  "text": "To understand the relationship between the different exponents, we note that the measured probability distributions are related by P(∆r) = R ∞ 0 P(∆r|rg)P(rg)drg, which suggests (see SM) that up to the leading order we have β = βr+α−1, consistent, within error bars, with the measured exponents."
+ },
+ {
+  "page": 4,
+  "kw": "return to",
+  "text": "In contrast, we ﬁnd that the return probability is characterized by several peaks at 24 h, 48 h, and 72 h, capturing a strong tendency of humans to return to locations they visited before, describing the recurrence and temporal periodicity inherent to human mobility [23, 24]."
+ },
+ {
+  "page": 4,
+  "kw": "return to",
+  "text": "To explore if individuals return to the same location over and over, we ranked each location based on the number of times an individual was recorded in its vicinity, such that a location with L = 3 represents the third most visited location for the selected individual."
+ },
+ {
+  "page": 5,
+  "kw": "regularity",
+  "text": "5 of their time to a few locations, while spending their remaining time in 5 to 50 places, visited with diminished regularity."
+ },
+ {
+  "page": 10,
+  "kw": "truncated power law",
+  "text": "The solid line indicates a truncated power law whose parameters are provided in the text (see Eq."
+ }
+]

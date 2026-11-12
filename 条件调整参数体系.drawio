@@ -1,0 +1,141 @@
+<mxfile host="Electron" agent="zcode">
+  <diagram id="param-system" name="条件调整参数体系">
+    <mxGraphModel dx="1700" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1750" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="TITLE" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" value="条件调整参数体系：特征向量 → 分层公式 → γ 查表 → 三套日型 → 事件查表" vertex="1">
+          <mxGeometry height="30" width="1400" x="30" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="SUBT" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" value="核心公式：效应(小时) = 全局剂量 θg·ln(1+r/RCg)  ×  γ(时段,日型) 查表修正    ——    只改参数，不改分布形状" vertex="1">
+          <mxGeometry height="22" width="1200" x="30" y="44" as="geometry" />
+        </mxCell>
+
+        <mxCell id="SEPH" parent="1" style="rounded=0;fillColor=#BFBFBF;strokeColor=#BFBFBF;" value="" vertex="1">
+          <mxGeometry height="2" width="1690" x="30" y="72" as="geometry" />
+        </mxCell>
+
+        <mxCell id="H1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#1F4E79;" value="第一步：特征向量（外生条件编码）" vertex="1">
+          <mxGeometry height="26" width="300" x="40" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="H2" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#833C0B;" value="第二步：分层公式（全局×γ 查表）" vertex="1">
+          <mxGeometry height="26" width="300" x="430" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="H3" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第三步：按日型分三套参数" vertex="1">
+          <mxGeometry height="26" width="300" x="790" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="H4" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第四步：事件查表叠加" vertex="1">
+          <mxGeometry height="26" width="300" x="1130" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="H5" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#375623;" value="输出" vertex="1">
+          <mxGeometry height="26" width="200" x="1470" y="82" as="geometry" />
+        </mxCell>
+
+        <mxCell id="SEPH2" parent="1" style="rounded=0;fillColor=#D9D9D9;strokeColor=#D9D9D9;" value="" vertex="1">
+          <mxGeometry height="1.5" width="1690" x="30" y="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="C1H" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#1F4E79;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" value="特征向量 c" vertex="1">
+          <mxGeometry height="30" width="280" x="40" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="C1r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="r_h  当前小时雨强（mm/h）" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="C1r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="r_h−1 / r_h−2  前一两小时雨强（滞后）" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="C1r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="时段  凌晨/早峰/白天/晚峰/夜间（5 档）" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="C1r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="日型  工作日 / 周末 / 假日（3 档）" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="C1r5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;fontSize=10;align=left;spacingLeft=6;fontStyle=2;" value="温度（预留）/ 可预期性（预留）/ 事件标记" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="272" as="geometry" />
+        </mxCell>
+
+        <mxCell id="C2H" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" value="分层公式（第一层全局 × 第二层直读γ）" vertex="1">
+          <mxGeometry height="30" width="280" x="360" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="C2core" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;" value="效应 = θg × ln(1+r/RCg) × γ(s,d)" vertex="1">
+          <mxGeometry height="36" width="280" x="360" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="C2a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6B656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;第一层 全局剂量&lt;/b&gt;：θg=0.023, RCg=0.02&lt;br&gt;365 个轻中雨样本拟合 2 个系数（最稳）" vertex="1">
+          <mxGeometry height="40" width="280" x="360" y="194" as="geometry" />
+        </mxCell>
+        <mxCell id="C2b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6B656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;第二层 直读γ（无拟合误差）&lt;/b&gt;&lt;br&gt;γ = 各格实测均值 ÷ 全局公式预测值&lt;br&gt;共 10 个数（5时段×2日型），逐格直读" vertex="1">
+          <mxGeometry height="46" width="280" x="360" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="C2c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;dashed=1;" value="⚠️ 已弃用：分时段 θs 回归拟合&lt;br&gt;（轻中雨段样本不足，斜率噪声大，MAE 14.9pp 反升）" vertex="1">
+          <mxGeometry height="40" width="280" x="360" y="288" as="geometry" />
+        </mxCell>
+
+        <mxCell id="C3H" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" value="三套日型参数表（γ 查表 + 基线切换）" vertex="1">
+          <mxGeometry height="30" width="280" x="700" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="T3H" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=9;fontStyle=1;align=center;" value="γ 查表（时段×日型）" vertex="1">
+          <mxGeometry height="20" width="280" x="700" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="T3HDR" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2F0D9;fontSize=8.5;align=center;" value="" vertex="1">
+          <mxGeometry height="18" width="280" x="700" y="172" as="geometry" />
+        </mxCell>
+        <mxCell id="T3C1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=left;spacingLeft=4;" value="凌晨" vertex="1"><mxGeometry height="16" width="56" x="700" y="190" as="geometry" /></mxCell>
+        <mxCell id="T3C2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=left;spacingLeft=4;" value="早峰" vertex="1"><mxGeometry height="16" width="56" x="756" y="190" as="geometry" /></mxCell>
+        <mxCell id="T3C3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=left;spacingLeft=4;" value="白天" vertex="1"><mxGeometry height="16" width="56" x="812" y="190" as="geometry" /></mxCell>
+        <mxCell id="T3C4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=left;spacingLeft=4;" value="晚峰" vertex="1"><mxGeometry height="16" width="56" x="868" y="190" as="geometry" /></mxCell>
+        <mxCell id="T3C5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=left;spacingLeft=4;" value="夜间" vertex="1"><mxGeometry height="16" width="56" x="924" y="190" as="geometry" /></mxCell>
+        <mxCell id="T3R1L" parent="1" style="rounded=0;fontSize=8.5;align=left;spacingLeft=4;" value="工作日" vertex="1"><mxGeometry height="16" width="50" x="700" y="206" as="geometry" /></mxCell>
+        <mxCell id="T3R1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=center;" value="0.42｜1.52｜1.34｜1.22｜0.72" vertex="1"><mxGeometry height="16" width="230" x="750" y="206" as="geometry" /></mxCell>
+        <mxCell id="T3R2L" parent="1" style="rounded=0;fontSize=8.5;align=left;spacingLeft=4;" value="周末" vertex="1"><mxGeometry height="16" width="50" x="700" y="222" as="geometry" /></mxCell>
+        <mxCell id="T3R2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8.5;align=center;" value="0.53｜1.04｜1.61｜1.40｜(1.35兜底)" vertex="1"><mxGeometry height="16" width="230" x="750" y="222" as="geometry" /></mxCell>
+        <mxCell id="C3a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;三套基线表切换&lt;/b&gt;&lt;br&gt;工作日：7×24（通勤三峰）&lt;br&gt;周末：夜生活型（23时大）&lt;br&gt;假日：−5.6% + 峰位后移7~10时" vertex="1">
+          <mxGeometry height="52" width="280" x="700" y="244" as="geometry" />
+        </mxCell>
+        <mxCell id="C3b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=9;align=left;spacingLeft=6;dashed=1;" value="关键规则：禁用日总量缩放（单日异质性）；&lt;br&gt;假日下雨不叠加（差0.7pp）→ 换基线即可" vertex="1">
+          <mxGeometry height="36" width="280" x="700" y="300" as="geometry" />
+        </mxCell>
+
+        <mxCell id="C4H" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#ed7d31;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" value="事件查表（叠加在日型之上）" vertex="1">
+          <mxGeometry height="30" width="280" x="1020" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="C4a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ed7d31;fontSize=9;align=left;spacingLeft=4;" value="&lt;b&gt;球赛/演唱会&lt;/b&gt;：场馆×3.5，客源×7~17，散场脉冲×1.1" vertex="1"><mxGeometry height="22" width="280" x="1020" y="152" as="geometry" /></mxCell>
+        <mxCell id="C4b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ed7d31;fontSize=9;align=left;spacingLeft=4;" value="&lt;b&gt;美网（14天）&lt;/b&gt;：客源×7~17，日夜双脉冲，距离+41%" vertex="1"><mxGeometry height="22" width="280" x="1020" y="178" as="geometry" /></mxCell>
+        <mxCell id="C4c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ed7d31;fontSize=9;align=left;spacingLeft=4;" value="&lt;b&gt;跨年&lt;/b&gt;：封街×0.004 冻结 → 凌晨×3.0 释放" vertex="1"><mxGeometry height="22" width="280" x="1020" y="204" as="geometry" /></mxCell>
+        <mxCell id="C4d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ed7d31;fontSize=9;align=left;spacingLeft=4;" value="&lt;b&gt;马拉松&lt;/b&gt;：沿线×0.5（16区域跌超30%），全市−15%" vertex="1"><mxGeometry height="22" width="280" x="1020" y="230" as="geometry" /></mxCell>
+        <mxCell id="C4e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=9;align=left;spacingLeft=4;dashed=1;" value="&lt;b&gt;崩溃档（郑州7·20型）&lt;/b&gt;：总量×0.2~0.4，距离截断，空间挖洞（物理约束，未验证）" vertex="1"><mxGeometry height="34" width="280" x="1020" y="256" as="geometry" /></mxCell>
+
+        <mxCell id="C5H" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" value="输出：λ_ext(时,区域)" vertex="1">
+          <mxGeometry height="30" width="280" x="1340" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="C5a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#70AD47;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;λ_ext(t,s) =&lt;/b&gt;&lt;br&gt;基线 λ₀(日型,t,s)&lt;br&gt;× 全局剂量 (1+θg·ln(1+r/RCg))&lt;br&gt;× γ(时段,日型) 查表&lt;br&gt;× 事件乘子（如有）" vertex="1">
+          <mxGeometry height="80" width="280" x="1340" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="C5b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#70AD47;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;同口径其余量&lt;/b&gt;&lt;br&gt;距离：3旋钮（μ1/w1/w3）&lt;br&gt;速度：×exp(−δv(r))，σ0=0.44&lt;br&gt;转 Step 3 采样" vertex="1">
+          <mxGeometry height="80" width="280" x="1340" y="238" as="geometry" />
+        </mxCell>
+
+        <mxCell id="VBOX" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=8;" value="&lt;b&gt;验证闭环&lt;/b&gt;：分层模型外推 MAE=10.7pp &amp;lt; 自然波动 13.9pp（达到可预测极限）&lt;br&gt;单变量 11.9pp ｜ 多维回归 14.9pp（弃用）｜ 距离 KS=0.024 ｜ 强雨外推偏差 4%" vertex="1">
+          <mxGeometry height="46" width="1690" x="30" y="340" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" edge="1" parent="1" source="C1H" target="C2H" style="rounded=1;html=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="编码">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="C2H" target="C3H" style="rounded=1;html=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="查 γ 表">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="C3H" target="C4H" style="rounded=1;html=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="叠加事件">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="C4H" target="C5H" style="rounded=1;html=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="合成">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="LEG" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;γ 表用法&lt;/b&gt;：γ&amp;gt;1 → 该时段雨效应比平均强（放大）；γ&amp;lt;1 → 比平均弱（收缩）；γ≈1 → 与平均相同&lt;br&gt;所有 γ 来自实测直读（各格均值÷全局预测），无拟合误差；周末格样本不足时用全局比值 1.35 兜底" vertex="1">
+          <mxGeometry height="42" width="1690" x="30" y="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

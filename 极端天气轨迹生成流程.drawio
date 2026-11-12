@@ -1,0 +1,512 @@
+<mxfile host="Electron" agent="zcode">
+  <diagram id="scheme-presentation" name="基线×扰动方案-汇报版">
+    <mxGraphModel dx="4480" dy="1794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1640" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Z1H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fillColor=none;" value="一、方案总流程：常态基线 P₀ × 条件扰动算子 f(c)　——　任意外生条件通用（天气 / 大型活动 / 政策 …）" vertex="1">
+          <mxGeometry height="28" width="1400" x="40" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="SEP1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="2" width="1620" x="40" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="C1a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;常态行程大数据&lt;/b&gt;&lt;br&gt;时刻 / 起终点 / 里程 / 时长&lt;br&gt;（例：纽约 TLC 2.61 亿行）" vertex="1">
+          <mxGeometry height="110" width="190" x="40" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="C1b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;外生条件 c（任意冲击）&lt;/b&gt;&lt;br&gt;天气 / 活动 / 政策 …&lt;br&gt;＋条件档案：&lt;br&gt;剂量曲线 / 事件窗 × zone" vertex="1">
+          <mxGeometry height="150" width="190" x="40" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="S1H" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;" value="Step 1  常态基线 P₀（四个分布部件）" vertex="1">
+          <mxGeometry height="26" width="400" x="270" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;① 时间节律 λ₀(t)&lt;/b&gt;｜何时出发（周内×小时剖面）" vertex="1">
+          <mxGeometry height="58" width="400" x="270" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;② 空间热力图 λ₀(s)&lt;/b&gt;｜从哪出发 · 到哪去（逐 zone）" vertex="1">
+          <mxGeometry height="58" width="400" x="270" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;③ 距离分布 P₀(d)&lt;/b&gt;｜走多远（多峰混合分布）" vertex="1">
+          <mxGeometry height="58" width="400" x="270" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="S1r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;④ 速度分布 P₀(v|t)&lt;/b&gt;｜多快（中位数随时刻，形状稳定）" vertex="1">
+          <mxGeometry height="58" width="400" x="270" y="304" as="geometry" />
+        </mxCell>
+        <mxCell id="S1N" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fillColor=none;" value="附：路网档案（zone 质心距离矩阵 d_ij、绕路系数 λ_detour 分布）" vertex="1">
+          <mxGeometry height="30" width="400" x="270" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="S2H" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;" value="Step 2  条件扰动算子 f(c)：参数化调制，不重塑形状" vertex="1">
+          <mxGeometry height="26" width="430" x="730" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;① 总量与峰形&lt;/b&gt;｜λ(t) × (1+δ_vol(c)) × g(t,c)" vertex="1">
+          <mxGeometry height="58" width="430" x="730" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;② 乘子场 γ(s,c)&lt;/b&gt;｜雨＝低维向心收缩（核心+7%/锚点−27%）；事件＝查表；崩溃＝挖洞" vertex="1">
+          <mxGeometry height="58" width="430" x="730" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;③ 距离调制&lt;/b&gt;｜log d 平移 δ_d(c) ＋ 短途/机场权重" vertex="1">
+          <mxGeometry height="58" width="430" x="730" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="S2r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;④ 速度调制&lt;/b&gt;｜log v 平移 δ_v(c)（σ 固定）" vertex="1">
+          <mxGeometry height="58" width="430" x="730" y="304" as="geometry" />
+        </mxCell>
+        <mxCell id="S2N" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fillColor=none;" value="参数来源：剂量-响应外推 / 事件窗 × zone 锚点 / 文献先验 ＋ 物理约束" vertex="1">
+          <mxGeometry height="30" width="430" x="730" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="S3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Step 3 采样合成&lt;/b&gt;&lt;br&gt;t, s, d, v → dur=d/v（三角一致）" vertex="1">
+          <mxGeometry height="80" width="220" x="1220" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="S4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Step 4 终点配对&lt;/b&gt;&lt;br&gt;环带重力 ＋ 容量约束" vertex="1">
+          <mxGeometry height="80" width="220" x="1220" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="S5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;Step 5 三道闸&lt;/b&gt;&lt;br&gt;三角一致 / 容量 / 分布 sanity" vertex="1">
+          <mxGeometry height="80" width="220" x="1220" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="D1" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" value="通过？" vertex="1">
+          <mxGeometry height="70" width="180" x="1240" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="OUT" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;fontSize=11;fontStyle=1;" value="输出：条件 c 下的轨迹集&lt;br&gt;（附外推置信区间）" vertex="1">
+          <mxGeometry height="70" width="220" x="1220" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="V1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;替身验证&lt;/b&gt;｜用可观测条件盲测（四量 KS/JS ＋ 总量 MAPE）&lt;br&gt;通过才放行外推；空间检验须做「雨时级」（日级会洗掉信号）" vertex="1">
+          <mxGeometry height="90" width="430" x="730" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="S6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;dashed=1;" value="&lt;b&gt;下游&lt;/b&gt;｜伪条件训练集 → 生成模型混训（条件 dropout 照常）" vertex="1">
+          <mxGeometry height="90" width="400" x="270" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fillColor=none;" value="二、示例 A｜晴天基线 ＋ 暴雨扰动 —— 幅度型：调「时间 / 速度 / 距离」三个旋钮 ＋ 低维空间乘子场（近不动）" vertex="1">
+          <mxGeometry height="28" width="1400" x="40" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="SEP2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="2" width="1620" x="40" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2C" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;暴雨条件输入&lt;/b&gt;&lt;br&gt;· 条件＝小时雨强时间线 r_h(t) ＋ 星期先验&lt;br&gt;· 参数＝剂量-响应曲线（小雨标定→外推）&lt;br&gt;· 实测锚点：&lt;br&gt;　0.3–1 mm/h：λ +8.6%｜1–4：+12.9%&lt;br&gt;　≥4 mm/h：λ +21.7%，速度 −10.1%" vertex="1">
+          <mxGeometry height="360" width="240" x="40" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="RB01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="4" width="8" x="55" y="1046" as="geometry" />
+        </mxCell>
+        <mxCell id="RB02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="7" width="8" x="72" y="1043" as="geometry" />
+        </mxCell>
+        <mxCell id="RB03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="5" width="8" x="89" y="1045" as="geometry" />
+        </mxCell>
+        <mxCell id="RB04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="8" x="106" y="1041" as="geometry" />
+        </mxCell>
+        <mxCell id="RB05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="12" width="8" x="123" y="1038" as="geometry" />
+        </mxCell>
+        <mxCell id="RB06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="16" width="8" x="140" y="1034" as="geometry" />
+        </mxCell>
+        <mxCell id="RB07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="24" width="8" x="157" y="1026" as="geometry" />
+        </mxCell>
+        <mxCell id="RB08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="34" width="8" x="174" y="1016" as="geometry" />
+        </mxCell>
+        <mxCell id="RB09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="28" width="8" x="191" y="1022" as="geometry" />
+        </mxCell>
+        <mxCell id="RB10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="20" width="8" x="208" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="RB11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="12" width="8" x="225" y="1038" as="geometry" />
+        </mxCell>
+        <mxCell id="RB12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="7" width="8" x="242" y="1043" as="geometry" />
+        </mxCell>
+        <mxCell id="RBC" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#fff2cc;strokeColor=none;" value="当天雨强时间线（示意）" vertex="1">
+          <mxGeometry height="18" width="200" x="55" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="A1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;出发时间&lt;/b&gt;｜总量 +9%~+22%，随小时雨强逐时抬升；峰形基本不动（通勤刚需弹性低）；带星期先验" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="A2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;速度&lt;/b&gt;｜整体变慢 −4%~−10%（雨越猛越慢）；只平移中位数，分布形状不动（σ 稳定，实测）" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="A3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;距离&lt;/b&gt;｜三分量（短/中/长途）三旋钮：中位 −3~−6%；短途占比 +1~2.5pp；长途份额 ×0.92（暴雨，暴雪→0）" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="854" as="geometry" />
+        </mxCell>
+        <mxCell id="A4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;空间分布&lt;/b&gt;｜低维乘子场「向心收缩」：核心 +7%、外环 −2%、长途锚点 −27%（与距离旋钮联动）；日级≈不动，雨时级 JS=0.0009 有结构" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="926" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2G" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b7b7b7;" value="" vertex="1">
+          <mxGeometry height="300" width="400" x="920" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2GT" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;" value="扰动前后形态（灰＝晴天基线）" vertex="1">
+          <mxGeometry height="18" width="400" x="920" y="714" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="22" width="6" x="940" y="858" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="23" width="6" x="947" y="857" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="12" width="6" x="966" y="868" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="13" width="6" x="973" y="867" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="18" width="6" x="992" y="862" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="21" width="6" x="999" y="859" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="31" width="6" x="1018" y="849" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="38" width="6" x="1025" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="39" width="6" x="1044" y="841" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="46" width="6" x="1051" y="834" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="45" width="6" x="1070" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="50" width="6" x="1077" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="52" width="6" x="1096" y="828" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="57" width="6" x="1103" y="823" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="57" width="6" x="1122" y="823" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="64" width="6" x="1129" y="816" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="60" width="6" x="1148" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="69" width="6" x="1155" y="811" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="52" width="6" x="1174" y="828" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="61" width="6" x="1181" y="819" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="43" width="6" x="1200" y="837" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="48" width="6" x="1207" y="832" as="geometry" />
+        </mxCell>
+        <mxCell id="LGb12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="31" width="6" x="1226" y="849" as="geometry" />
+        </mxCell>
+        <mxCell id="LGs12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="33" width="6" x="1233" y="847" as="geometry" />
+        </mxCell>
+        <mxCell id="LGC" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#ffffff;strokeColor=none;" value="出发时间：整体抬升，峰形不动" vertex="1">
+          <mxGeometry height="18" width="200" x="935" y="884" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="10" width="6" x="940" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="16" width="6" x="947" y="1024" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="30" width="6" x="976" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="42" width="6" x="983" y="998" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="55" width="6" x="1012" y="985" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="68" width="6" x="1019" y="972" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="75" width="6" x="1048" y="965" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="84" width="6" x="1055" y="956" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="85" width="6" x="1084" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="75" width="6" x="1091" y="965" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="70" width="6" x="1120" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="55" width="6" x="1127" y="985" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="50" width="6" x="1156" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="35" width="6" x="1163" y="1005" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="32" width="6" x="1192" y="1008" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="20" width="6" x="1199" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="18" width="6" x="1228" y="1022" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="11" width="6" x="1235" y="1029" as="geometry" />
+        </mxCell>
+        <mxCell id="VGb10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="10" width="6" x="1264" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="VGs10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70ad47;strokeColor=#70ad47;" value="" vertex="1">
+          <mxGeometry height="6" width="6" x="1271" y="1034" as="geometry" />
+        </mxCell>
+        <mxCell id="VGC" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#ffffff;strokeColor=none;" value="速度：整体左移（变慢），形状不变" vertex="1">
+          <mxGeometry height="18" width="220" x="960" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="Z2W" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cc0000;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;⚠️ 单日陷阱&lt;/b&gt;&lt;br&gt;单日响应由「雨的落点＋星期几」决定，&lt;br&gt;与日总量弱相关：&lt;br&gt;· 4/3（99mm，周三闪洪）：+27%&lt;br&gt;· 8/18（148mm，周日全天）：−4.5%&lt;br&gt;&lt;b&gt;做法&lt;/b&gt;：逐小时跟随雨强时间线扰动，&lt;br&gt;禁用日总量整体缩放" vertex="1">
+          <mxGeometry height="300" width="320" x="1360" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="SEP3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="2" width="1620" x="40" y="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fillColor=none;" value="三、示例 B｜日常基线 ＋ 大型活动扰动 —— 结构型：改「时间表与地图」，速度与总量不动" vertex="1">
+          <mxGeometry height="28" width="1400" x="40" y="1122" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3C" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;活动条件输入&lt;/b&gt;&lt;br&gt;· 条件＝事件日历（场馆 zone＋到场/散场窗）&lt;br&gt;· 参数＝窗 × zone 实测锚点&lt;br&gt;· 粒度红线：zone × 半小时，&lt;br&gt;　须支持窗内反转（冻结→释放）&lt;br&gt;· 两型指纹：" vertex="1">
+          <mxGeometry height="360" width="240" x="40" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="70" width="90" x="55" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3D1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="75" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3S1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="12" width="12" x="108" y="1412" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M1C" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#fff2cc;strokeColor=none;" value="点事件（球赛/演唱会）" vertex="1">
+          <mxGeometry height="18" width="100" x="50" y="1444" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="70" width="90" x="175" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="3" width="40" x="188" y="1412" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="22" width="3" x="225" y="1392" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="3" width="30" x="225" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M2C" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#fff2cc;strokeColor=none;" value="线事件（马拉松/封路）" vertex="1">
+          <mxGeometry height="18" width="100" x="170" y="1444" as="geometry" />
+        </mxCell>
+        <mxCell id="B1c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;出发时间&lt;/b&gt;｜总量几乎不动（球赛 +2%）；窗内剧变：散场 ×1.1 脉冲、跨年封街 ×0.004 冻结 → ×3.0 释放" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="B2c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;速度&lt;/b&gt;｜不动——所有事件均未测出速度效应，基线原样沿用" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="1242" as="geometry" />
+        </mxCell>
+        <mxCell id="B3c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;距离&lt;/b&gt;｜常规活动持平（球赛 2.32→2.28mi）；「远来人群」型显著动：美网中位 +41%" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="1314" as="geometry" />
+        </mxCell>
+        <mxCell id="B4c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;空间分布&lt;/b&gt;｜主战场：客源重排 ×7~17（中城/机场/网红区）；沿线冻结 −31~−48%（马拉松）；zone × 半小时粒度，窗读自事件日历" vertex="1">
+          <mxGeometry height="64" width="560" x="320" y="1386" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3G" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b7b7b7;" value="" vertex="1">
+          <mxGeometry height="300" width="400" x="920" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3GT" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;" value="事件的时间与空间形态（实测）" vertex="1">
+          <mxGeometry height="18" width="400" x="920" y="1174" as="geometry" />
+        </mxCell>
+        <mxCell id="NB01" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="3" width="10" x="940" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="NB02" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="2" width="10" x="966" y="1328" as="geometry" />
+        </mxCell>
+        <mxCell id="NB03" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="3" width="10" x="992" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="NB04" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="2" width="10" x="1018" y="1328" as="geometry" />
+        </mxCell>
+        <mxCell id="NB05" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="4" width="10" x="1044" y="1326" as="geometry" />
+        </mxCell>
+        <mxCell id="NB06" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="3" width="10" x="1070" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="NB07" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="2" width="10" x="1096" y="1328" as="geometry" />
+        </mxCell>
+        <mxCell id="NB08" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="3" width="10" x="1122" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="NB09" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="45" width="10" x="1148" y="1285" as="geometry" />
+        </mxCell>
+        <mxCell id="NB10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="70" width="10" x="1174" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="NB11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="55" width="10" x="1200" y="1275" as="geometry" />
+        </mxCell>
+        <mxCell id="NB12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="38" width="10" x="1226" y="1292" as="geometry" />
+        </mxCell>
+        <mxCell id="NB13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="25" width="10" x="1252" y="1305" as="geometry" />
+        </mxCell>
+        <mxCell id="NB14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="15" width="10" x="1278" y="1315" as="geometry" />
+        </mxCell>
+        <mxCell id="NBC" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#ffffff;strokeColor=none;" value="跨年夜时代广场：封街冻结（×0.004）→ 午夜释放（×3.0）" vertex="1">
+          <mxGeometry height="18" width="300" x="940" y="1332" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="80" width="170" x="940" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="3" width="60" x="958" y="1424" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="30" width="3" x="1015" y="1396" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3R6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="3" width="50" x="1015" y="1394" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M3C" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#ffffff;strokeColor=none;" value="马拉松：沿线冻结 −31~−48%" vertex="1">
+          <mxGeometry height="18" width="170" x="940" y="1452" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#999999;" value="" vertex="1">
+          <mxGeometry height="80" width="160" x="1140" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="UD1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="1160" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="UD2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="1190" y="1412" as="geometry" />
+        </mxCell>
+        <mxCell id="UD3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="1172" y="1434" as="geometry" />
+        </mxCell>
+        <mxCell id="UD4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="1222" y="1396" as="geometry" />
+        </mxCell>
+        <mxCell id="UD5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4472c4;strokeColor=#4472c4;" value="" vertex="1">
+          <mxGeometry height="9" width="9" x="1244" y="1424" as="geometry" />
+        </mxCell>
+        <mxCell id="US1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#c00000;strokeColor=#c00000;" value="" vertex="1">
+          <mxGeometry height="13" width="13" x="1262" y="1382" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3M4C" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=9;fillColor=#ffffff;strokeColor=none;" value="美网：客源汇聚 ×7~17（红＝场馆）" vertex="1">
+          <mxGeometry height="18" width="170" x="1135" y="1452" as="geometry" />
+        </mxCell>
+        <mxCell id="Z3W" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;一句话&lt;/b&gt;&lt;br&gt;&lt;br&gt;雨 ＝ &lt;b&gt;幅度算子&lt;/b&gt;&lt;br&gt;调三个旋钮（总量/速度/距离）&lt;br&gt;＋低维空间乘子（向心收缩）&lt;br&gt;&lt;br&gt;事件 ＝ &lt;b&gt;结构算子&lt;/b&gt;&lt;br&gt;改地图与时刻表（乘子场查表），&lt;br&gt;速度与总量不动&lt;br&gt;&lt;br&gt;&lt;b&gt;同一套基线 P₀，&lt;br&gt;两类扰动插件 f(c)&lt;/b&gt;&lt;br&gt;——换条件，只换插件" vertex="1">
+          <mxGeometry height="360" width="320" x="1360" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="LEG" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;align=left;spacingLeft=8;" value="&lt;b&gt;色彩约定（贯穿三节）&lt;/b&gt;：蓝＝出发时间　｜　紫＝空间分布　｜　橙＝行程距离　｜　绿＝速度　｜　黄＝条件输入　｜　灰＝通用流程　｜　小图＝实测/示意形态" vertex="1">
+          <mxGeometry height="40" width="1620" x="40" y="1560" as="geometry" />
+        </mxCell>
+        <mxCell id="ze1" edge="1" parent="1" source="C1a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="S1H" value="常态样本">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze2" edge="1" parent="1" source="C1b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="S2H" value="条件 c 与参数">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="325" />
+              <mxPoint x="20" y="60" />
+              <mxPoint x="945" y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ze3" edge="1" parent="1" source="S1r1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#6c8ebf;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="S2r1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze4" edge="1" parent="1" source="S1r2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#9673a6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="S2r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze5" edge="1" parent="1" source="S1r3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#ed7d31;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="S2r3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze6" edge="1" parent="1" source="S1r4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;strokeColor=#70ad47;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="S2r4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze7" edge="1" parent="1" source="S2r1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;strokeColor=#6c8ebf;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" target="S3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze8" edge="1" parent="1" source="S2r2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;strokeColor=#9673a6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="S3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze9" edge="1" parent="1" source="S2r3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;strokeColor=#ed7d31;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;" target="S3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze10" edge="1" parent="1" source="S2r4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;strokeColor=#70ad47;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="S3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze11" edge="1" parent="1" source="S3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="S4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze12" edge="1" parent="1" source="S4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="S5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze13" edge="1" parent="1" source="S5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="D1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze14" edge="1" parent="1" source="D1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="OUT" value="通过">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze15" edge="1" parent="1" source="D1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;dashed=1;strokeColor=#cc0000;fontColor=#cc0000;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="S2N" value="不通过：修正扰动">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="425" />
+              <mxPoint x="1180" y="460" />
+              <mxPoint x="945" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ze16" edge="1" parent="1" source="OUT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;dashed=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="S6" value="伪条件样本">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1330" y="600" />
+              <mxPoint x="670" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ze17" edge="1" parent="1" source="OUT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;dashed=1;strokeColor=#9673a6;fontColor=#9673a6;fontSize=10;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" target="V1" value="盲测">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze18" edge="1" parent="1" source="V1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;dashed=1;strokeColor=#9673a6;fontColor=#9673a6;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="C1b" value="校准 / 放行外推">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="945" y="620" />
+              <mxPoint x="135" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ze19" edge="1" parent="1" source="Z2C" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;fontSize=10;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="A1" value="四量处理">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ze20" edge="1" parent="1" source="Z3C" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=1.5;fontSize=10;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="B1c" value="四量处理">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

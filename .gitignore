@@ -1,0 +1,23 @@
+# 原始数据与中间数据（13GB+，不入库）
+data/
+*.npz
+*.parquet
+*.zip
+*.rar
+
+# 临时文件
+_*.png
+~$*
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+*.tmp
+
+# 办公软件锁文件
+~$*.pptx
+~$*.xlsx
+.claude/
+*.bkp
+
+# 外部大数据集（DiDi 演练数据 1.2GB）
+didi_data/

@@ -1,0 +1,108 @@
+<mxfile host="Electron" agent="zcode">
+  <diagram id="final-v4" name="条件转化框架v4">
+    <mxGraphModel dx="1800" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="TITLE" parent="1" vertex="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1F4E79;" value="条件转化框架：特征向量 → 可控(RF) / 不可控(function) → 四量系数 → 分布">
+          <mxGeometry x="400" y="6" width="1000" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 特征向量 ===== -->
+        <mxCell id="FEAT_H" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=center;" value="特征向量 c">
+          <mxGeometry x="30" y="60" width="150" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="F1" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="① 雨强 r（如暴雨 30 mm/h）">
+          <mxGeometry x="30" y="88" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F2" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="② 时段（如早高峰 8 时）">
+          <mxGeometry x="30" y="112" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F3" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="③ 日型（如工作日周三）">
+          <mxGeometry x="30" y="136" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F4" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="④ 事件（如无）">
+          <mxGeometry x="30" y="160" width="150" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 判断 ===== -->
+        <mxCell id="JUDGE" parent="1" vertex="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1A1A1A;fontSize=10;fontStyle=1;" value="c 在可控范围？">
+          <mxGeometry x="230" y="100" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 可控 → RF ===== -->
+        <mxCell id="RF_HDR" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#1F4E79;fontColor=#1F4E79;fontSize=11;fontStyle=1;align=center;" value="可控 → RF 内插">
+          <mxGeometry x="430" y="52" width="230" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="RF_B" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=8;" value="&lt;b&gt;特征&lt;/b&gt;：与 c 对齐（雨强/时段/日型/事件）&lt;br&gt;&lt;b&gt;标签&lt;/b&gt;：四类系数（出发时间/空间/距离/速度）&lt;br&gt;&lt;b&gt;训练数据&lt;/b&gt;：NYC 全量（含暴雨 148mm）&lt;br&gt;&lt;b&gt;输出&lt;/b&gt;：四量系数值">
+          <mxGeometry x="430" y="80" width="230" height="56" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 不可控 → function ===== -->
+        <mxCell id="EXT_HDR" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#8C5A00;fontSize=11;fontStyle=1;align=center;" value="不可控 → function 外推">
+          <mxGeometry x="430" y="170" width="230" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="EXT_B" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6B656;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=8;" value="&lt;b&gt;function(c)&lt;/b&gt;：多维连乘外推&lt;br&gt;各特征维一个修正因子，连乘得系数&lt;br&gt;&lt;b&gt;输出&lt;/b&gt;：四量系数值（附置信区间）">
+          <mxGeometry x="430" y="198" width="230" height="42" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 右侧：四量应用 ===== -->
+        <mxCell id="APP_H" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=center;" value="四量系数 → 应用到分布">
+          <mxGeometry x="720" y="52" width="210" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="APP1" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6E4F0;strokeColor=#1F4E79;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="出发时间：λ(t) × (1+δvol)">
+          <mxGeometry x="720" y="80" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="APP2" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="空间分布：λ(s) × γ(s)">
+          <mxGeometry x="720" y="104" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="APP3" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#ED7D31;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="距离分布：P(d) × 三旋钮">
+          <mxGeometry x="720" y="128" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="APP4" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="速度分布：v × exp(-δv)">
+          <mxGeometry x="720" y="152" width="210" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===== 最右：采样校验 ===== -->
+        <mxCell id="SAMP_H" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;fontStyle=1;align=center;" value="采样 → 校验 → 输出">
+          <mxGeometry x="990" y="80" width="170" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="SAMP1" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="采样：t, s, d, v, 终点">
+          <mxGeometry x="990" y="108" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="SAMP2" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#888888;fontColor=#1A1A1A;fontSize=9;align=left;spacingLeft=5;" value="校验：三道闸">
+          <mxGeometry x="990" y="132" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="SAMP3" parent="1" vertex="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1A1A1A;fontSize=9;fontStyle=1;align=left;spacingLeft=5;" value="输出：条件轨迹集">
+          <mxGeometry x="990" y="156" width="170" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- 连线 -->
+        <mxCell id="e01" edge="1" parent="1" source="FEAT_H" target="JUDGE" style="html=1;strokeWidth=1.8;strokeColor=#1F4E79;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;fontSize=9;" value="输入 c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e02" edge="1" parent="1" source="JUDGE" target="RF_HDR" style="html=1;strokeWidth=1.8;strokeColor=#1F4E79;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;fontSize=9;" value="可控">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e03" edge="1" parent="1" source="JUDGE" target="EXT_HDR" style="html=1;strokeWidth=1.8;strokeColor=#D6B656;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;fontSize=9;" value="不可控">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e04" edge="1" parent="1" source="RF_HDR" target="APP_H" style="html=1;strokeWidth=1.8;strokeColor=#1F4E79;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;fontSize=9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e05" edge="1" parent="1" source="EXT_HDR" target="APP_H" style="html=1;strokeWidth=1.8;strokeColor=#D6B656;endArrow=block;endFill=1;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.7;labelBackgroundColor=#FFFFFF;fontSize=9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e06" edge="1" parent="1" source="APP_H" target="SAMP_H" style="html=1;strokeWidth=1.8;strokeColor=#1F4E79;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;fontSize=9;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 底部说明 -->
+        <mxCell id="NOTE" parent="1" vertex="1" style="text;html=1;align=left;fontSize=9;fontColor=#666666;" value="可控：各维度在标定范围内 → RF 内插（精度最优）；不可控：超出范围 → function 多维连乘外推（物理约束保证不爆炸）；殊途同归，输出同一组四量系数">
+          <mxGeometry x="30" y="250" width="1300" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

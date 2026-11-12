@@ -1,0 +1,82 @@
+[
+ {
+  "page": 1,
+  "kw": "mixture of experts",
+  "text": "Preprint MOVEGPT: SCALING MOBILITY FOUNDATION MOD- ELS WITH SPATIALLY-AWARE MIXTURE OF EXPERTS Chonghua Han, Yuan Yuan, Jingtao Ding, Jie Feng, Fanjin Meng, Yong Li Department of Electronic Engineering, Tsinghua University, Beijing, China."
+ },
+ {
+  "page": 1,
+  "kw": "location",
+  "text": "MoveGPT is built upon two key innovations: (1) a unified location encoder that maps geograph- ically disjoint locations into a shared semantic space, enabling pre-training on a global scale; and (2) a Spatially-Aware Mixture-of-Experts Transformer that devel- ops specialized experts to efficiently capture diverse mobility patterns."
+ },
+ {
+  "page": 1,
+  "kw": "pre-train",
+  "text": "Pre-trained on billion-scale datasets, MoveGPT establishes a new state-of-the-art across a wide range of downstream tasks, achieving performance gains of up to 35% on average."
+ },
+ {
+  "page": 1,
+  "kw": "scaling",
+  "text": "Crucially, our work provides empirical evidence of scaling ability in human mobility, vali- dating a clear path toward building increasingly capable foundation models in this domain."
+ },
+ {
+  "page": 1,
+  "kw": "pre-train",
+  "text": "The source code and pre-trained models for MoveGPT are publicly avail- able at: https://anonymous.4open.science/r/MoveGPT-FC72/."
+ },
+ {
+  "page": 2,
+  "kw": "scaling",
+  "text": "The first barrier is the lack of a universal basic unit, which directly prevents the scaling of data across geographies."
+ },
+ {
+  "page": 2,
+  "kw": "location",
+  "text": "To address the representation challenge, MoveGPT introduces a unified location encoder that maps all locations into a universal semantic feature space based on their geographic, functional, and social characteristics."
+ },
+ {
+  "page": 3,
+  "kw": "POI",
+  "text": "An individual’s movement trajectory Su is thus represented as a time-ordered sequence of these stay points: Su = ⟨˜t1, loc1⟩, ⟨˜t2, loc2⟩, ..., ⟨˜tn, locn⟩ (1) where ˜ti denotes the timestamp and loci is the i-th stay point, forming an irregular time series."
+ },
+ {
+  "page": 3,
+  "kw": "cross-city",
+  "text": "However, such representations hinder cross-city transferability."
+ },
+ {
+  "page": 4,
+  "kw": "POI",
+  "text": "(3) Each sequence is individually embedded to obtain Epoi, Egeo, and Epop."
+ },
+ {
+  "page": 5,
+  "kw": "retrieval",
+  "text": "To overcome this, we design a flexible and scalable pre-training task based on a retrieval framework."
+ },
+ {
+  "page": 6,
+  "kw": "fine-tun",
+  "text": "Furthermore, we examine its transfer learning capabilities to see how effectively it transfers learned knowledge to new cities with minimal fine-tuning data."
+ },
+ {
+  "page": 8,
+  "kw": "fine-tun",
+  "text": "The fine-tuning settings are shown in Appendix D.3."
+ },
+ {
+  "page": 8,
+  "kw": "cross-city",
+  "text": "This compelling evidence substantiates the exceptional generalization capacity of our pretraining methodology, highlighting its effectiveness in cross-city knowledge transfer with limited target data requirements."
+ },
+ {
+  "page": 13,
+  "kw": "retrieval",
+  "text": "In Proceedings of the 45th International ACM SIGIR Conference on research and development in information retrieval, pp."
+ },
+ {
+  "page": 14,
+  "kw": "mixture of experts",
+  "text": "B.2 MIXTURE OF EXPERTS Mixture of Experts (MoE) (Shazeer et al., 2017; Jordan & Jacobs, 1994; Jacobs et al., 1991) is a deep learning architecture that enhances model performance through a divide-and-conquer strategy."
+ }
+]

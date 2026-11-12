@@ -1,0 +1,92 @@
+[
+ {
+  "page": 1,
+  "kw": "diffusion",
+  "text": "DiffTraj: Generating GPS Trajectory with Diffusion Probabilistic Model Yuanshao Zhu1,2, Yongchao Ye1, Shiyao Zhang1, Xiangyu Zhao2,∗, James J.Q."
+ },
+ {
+  "page": 1,
+  "kw": "generate",
+  "text": "A promising approach to address this issue is trajectory generation, which involves replacing original data with generated, privacy-free alternatives."
+ },
+ {
+  "page": 1,
+  "kw": "generation",
+  "text": "Despite the potential of trajectory generation, the complex nature of human behavior and its inherent stochastic characteristics pose challenges in generating high-quality trajectories."
+ },
+ {
+  "page": 1,
+  "kw": "diffusion",
+  "text": "In this work, we propose a spatial-temporal diffusion probabilistic model for trajectory generation (DiffTraj)."
+ },
+ {
+  "page": 1,
+  "kw": "diffusion",
+  "text": "This model effectively combines the generative abilities of diffusion models with the spatial-temporal features derived from real trajectories."
+ },
+ {
+  "page": 1,
+  "kw": "noise",
+  "text": "The core idea is to reconstruct and synthesize geographic trajectories from white noise through a reverse trajectory denoising process."
+ },
+ {
+  "page": 1,
+  "kw": "conditional",
+  "text": "Furthermore, we propose a Trajectory UNet (Traj-UNet) deep neural network to embed conditional information and accurately estimate noise levels during the reverse process."
+ },
+ {
+  "page": 1,
+  "kw": "generate",
+  "text": "Experiments on two real-world datasets show that DiffTraj can be intuitively applied to generate high-fidelity trajectories while retaining the original distributions."
+ },
+ {
+  "page": 1,
+  "kw": "generate",
+  "text": "Moreover, the generated results can support downstream trajectory analysis tasks and significantly outperform other methods in terms of geo-distribution evaluations."
+ },
+ {
+  "page": 2,
+  "kw": "generate",
+  "text": "The generated trajectories allow for equivalent data analysis outcomes and support high-level decision-making without compromising privacy."
+ },
+ {
+  "page": 2,
+  "kw": "generation",
+  "text": "Accounting for these factors and understanding their impact on the correlations between individual GPS locations within a trajectory adds to the complexity of modeling trajectory generation accurately."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "To address the above challenges, we propose a trajectory generation method based on the spatial-temporal diffusion probabilistic model, which can effectively capture the complex behaviors of real-world activities and generates high-quality trajectories."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "The core idea behind this method is to perturb the trajectory distribution with noise through a forward trajectory diffusion process and then recover the original distribution by learning the backward diffusion process (denoising), resulting in a highly flexible trajectory generation model [11, 28]."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "We propose this framework based on three primary motivations: (i) The diffusion model is a more reliable and robust method of generation than canonical methods [35]."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "(ii) Human activities in the real world exhibit stochastic and uncertain characteristics [18, 10], and the diffusion model reconstructs data step-by-step from random noise, making it suitable for generating more realistic GPS trajectory."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "(iii) Since the diffusion model generates trajectories from random noise, it eliminates the risk of privacy leakage."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "While the diffusion model shows promise for generating high-quality trajectories, it is a non-trivial task when applied to GPS trajectory generation."
+ },
+ {
+  "page": 2,
+  "kw": "diffusion",
+  "text": "Firstly, the spatial-temporal nature of trajectory data presents complexity to the diffusion process, requiring the model to consider the spatial distribution of GPS points and the temporal dependencies among them."
+ }
+]

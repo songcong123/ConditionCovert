@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net" agent="claude-code" version="24.7.7">
+  <diagram id="zerodata-transfer" name="零数据城市迁移流程">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="in1" value="① OSM 免费数据&lt;br&gt;POI 分布 · 路网 · 场馆&lt;br&gt;机场 · 地铁站" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="in2" value="② 普查通勤数据&lt;br&gt;出发上班时间直方图&lt;br&gt;+ 居住→工作 OD 矩阵" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="in3" value="③ 活动日历&lt;br&gt;场馆 · 开/散场时间 · 容量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="540" y="40" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="in4" value="④ 源城市可迁移资产&lt;br&gt;g(x,t) 特征→流量&lt;br&gt;m(x,c) 条件调制 · β(c) 衰减&lt;br&gt;日间/周末 λ 形状" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="790" y="40" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="in5" value="外生条件 c&lt;br&gt;天气 · 假日 · 活动" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="40" width="180" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1" value="Zone 特征库 x&#8336;&lt;br&gt;POI + 常住人口 + 岗位&lt;br&gt;+ 城内标准化坐标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="190" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="基础节律 λ₀(t)&lt;br&gt;早峰 = 通勤出发直方图&lt;br&gt;晚峰 = 就业分布 × 下班时刻&lt;br&gt;日间/周末 = 源城迁移形状" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="290" y="190" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="活动锚点表&lt;br&gt;(场馆 zone, 散场窗, 容量)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="190" width="210" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2" value="起点 P(PU|t,c)&lt;br&gt;= g(x&#8336;,t) × m(x&#8336;,c)&lt;br&gt;早: 住宅权重↑ 晚: 岗位权重↑&lt;br&gt;雨: 地铁临近区 first/last-mile↑&lt;br&gt;活动: 场馆 zone 脉冲&lt;br&gt;★通勤矩阵可直接替换早高峰段" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="20" y="350" width="250" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="出发时间 λ(t|c)&lt;br&gt;= λ₀(t) ⊙ 调制(c)&lt;br&gt;假日: 删通勤峰 → 午间峰&lt;br&gt;雨天: 削峰 + 提前订车平尾&lt;br&gt;活动: 散场窗加脉冲" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="310" y="350" width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="终点 P(DO|PU,t,c)&lt;br&gt;= 弥散分量 + 锚点分量&lt;br&gt;弥散: A(j,t)·exp(−β(c)·d&#8336;&#8332;) 或辐射模型&lt;br&gt;锚点: 机场/场馆/枢纽 (OSM 可枚举)&lt;br&gt;雨天: β 收紧 → 短途化&lt;br&gt;★早高峰 DO ≈ 通勤矩阵工作地" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="580" y="350" width="290" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="d1" value="逐步采样&lt;br&gt;t ~ λ(t|c)&lt;br&gt;PU ~ P(PU|t,c)&lt;br&gt;DO ~ P(DO|PU,t,c)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="310" y="560" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="输出: 条件化 起终点 + 出发时刻&lt;br&gt;P(OD,t|c) = λ(t|c)·P(PU|t,c)·P(DO|PU,t,c)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="290" y="720" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="val" value="验证: 伪新城市实验(留一城)&lt;br&gt;NYC 只用 ①②③ 预测&lt;br&gt;→ 对比真实 TLC&lt;br&gt;误差 ≈ 零数据方案跨城置信区间" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="700" width="300" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ed1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="in1" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="in2" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed3" value="日间/周末形状" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#6c8ebf;fontSize=10;" edge="1" parent="1" source="in4" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="in3" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed5" value="g(x,t), m(x,c)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#6c8ebf;fontSize=10;" edge="1" parent="1" source="in4" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed6" value="β(c)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#6c8ebf;fontSize=10;" edge="1" parent="1" source="in4" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed7" value="c 调制" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#d79b00;fontSize=10;" edge="1" parent="1" source="in5" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed8" value="c 调制" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#d79b00;fontSize=10;" edge="1" parent="1" source="in5" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed9" value="c 调制" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#d79b00;fontSize=10;" edge="1" parent="1" source="in5" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="s1" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="s2" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed12" value="散场窗脉冲" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontSize=10;" edge="1" parent="1" source="s3" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="s3" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed14" value="通勤OD直连早高峰" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="in2" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="c1" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="c2" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="c3" target="d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" edge="1" parent="1" source="d1" target="e1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed19" value="自测校准" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#9673a6;fontSize=10;" edge="1" parent="1" source="d1" target="val">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

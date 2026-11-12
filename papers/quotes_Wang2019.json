@@ -1,0 +1,62 @@
+[
+ {
+  "page": 1,
+  "kw": "demand",
+  "text": "Data-Driven Multi-step Demand Prediction for Ride- hailing Services Using Convolutional Neural Network Chao Wang1, Yi Hou2, and Matthew Barth1 1 University of California Riverside, Riverside, CA 92507, USA 2 National Renewable Energy Laboratory, Golden, CO 80401, USA cwang061@ucr.edu Yi.Hou@nrel.gov barth@ece.ucr.edu Abstract."
+ },
+ {
+  "page": 1,
+  "kw": "demand",
+  "text": "Accurate prediction of ride-hailing trip demand not only enables cities to better understand people’s activity patterns, but also helps ride-hailing companies and drivers make informed decisions to reduce deadheading vehicle miles traveled, traffic congestion, and energy consumption."
+ },
+ {
+  "page": 1,
+  "kw": "Chengdu",
+  "text": "In this study, a convolutional neural network (CNN)-based deep learning model is proposed for multi-step ride- hailing demand prediction using the trip request data in Chengdu, China, offered by DiDi Chuxing."
+ },
+ {
+  "page": 1,
+  "kw": "Chengdu",
+  "text": "The CNN model is capable of accurately predicting the ride-hailing pick-up demand at each 1-km by 1-km zone in the city of Chengdu for every 10 minutes."
+ },
+ {
+  "page": 2,
+  "kw": "convolutional",
+  "text": "Similarly, the convolutional layers of a CNN not only enable CNN to capture the local feature of the image data, but also reduce model parameters that need to be estimated."
+ },
+ {
+  "page": 3,
+  "kw": "order",
+  "text": "As a leading mobile transportation platform, DiDi receives more than 25 million trip orders, collects more than 70 TB of new route data, processes more than 4,500 TB of data, and obtains more than 20 billion queries for route planning and 15 billion queries for geolocation."
+ },
+ {
+  "page": 3,
+  "kw": "GAIA",
+  "text": "In 2017, DiDi announced its GAIA Initiative and decided to share a complete sample of the route and ride request data with the academic community."
+ },
+ {
+  "page": 3,
+  "kw": "million",
+  "text": "The request dataset contains 7 million ride request records with origin-destination (OD) points and the trip start and end times."
+ },
+ {
+  "page": 3,
+  "kw": "order",
+  "text": "Parameter Sample Comment Order id mjiwdgkqmonDFvCk3ntBpron5 mwfrqvI Anonymized Trip Start time 1501581031 Unix timestamp, in seconds Trip end time 1501582195 Unix timestamp, in seconds Pick-up longitude 104.11225 GCJ-02 Coordinate System"
+ },
+ {
+  "page": 7,
+  "kw": "convolutional",
+  "text": "It is common to periodically insert a pooling layer between successive convolutional layers in a CNN architecture [22]."
+ },
+ {
+  "page": 10,
+  "kw": "million",
+  "text": "We utilized the 7-million trip records collected in 4 6 8 10 1 2 3 4 5 6 RMSE Time Step Predicted Ahead (10 min) Instantons CNN 3 4 5 6 1 2 3 4 5 6 MAE Time Step Predicted Ahead (10 min) Instantons CNN"
+ },
+ {
+  "page": 12,
+  "kw": "GAIA",
+  "text": "GAIA Open Dataset, https://outreach.didichuxing.com/research/opendata/en/, last accessed 2018/07/21."
+ }
+]

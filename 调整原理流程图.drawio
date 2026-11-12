@@ -1,0 +1,180 @@
+<mxfile host="Electron" agent="zcode">
+  <diagram id="adjust-principle" name="调整原理流程图">
+    <mxGraphModel dx="1700" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="T" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;" value="调整参数的确定原理：从实测到公式到采样——每个数都有出处" vertex="1">
+          <mxGeometry height="30" width="1200" x="40" y="16" as="geometry" />
+        </mxCell>
+        <mxCell id="SUBT" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" value="核心哲学：只调参数，不改分布形状——换条件＝换参数，不用重新学分布" vertex="1">
+          <mxGeometry height="24" width="900" x="40" y="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="H1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第一步：从数据里实测三个点" vertex="1">
+          <mxGeometry height="26" width="280" x="40" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="H2" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第二步：拟合一条曲线（两个系数）" vertex="1">
+          <mxGeometry height="26" width="320" x="360" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="H3" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第三步：代入预报/日历，算出系数" vertex="1">
+          <mxGeometry height="26" width="280" x="720" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="H4" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#333333;" value="第四步：乘上去，抽签采样" vertex="1">
+          <mxGeometry height="26" width="280" x="1040" y="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="SEP" parent="1" style="rounded=0;fillColor=#bfbfbf;strokeColor=#bfbfbf;" value="" vertex="1">
+          <mxGeometry height="2" width="1280" x="40" y="122" as="geometry" />
+        </mxCell>
+
+        <mxCell id="R1H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#1F4E79;" value="① 出发时间" vertex="1">
+          <mxGeometry height="28" width="160" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="R1a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;基线：查表&lt;/b&gt;&lt;br&gt;7×24=168 个数（星期几×每小时的单量）&lt;br&gt;288 个晴天日实测直读，零公式零参数" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="R1b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;实测三个点（小时雨强分箱）&lt;/b&gt;&lt;br&gt;0.3-1 mm/h：总量 +8.6%&lt;br&gt;1-4 mm/h：+12.9%&lt;br&gt;≥4 mm/h：+21.7%" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="R1c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;拟合系数曲线&lt;/b&gt;&lt;br&gt;系数(r) = 1 + 0.052 × ln(1 + r/0.2)&lt;br&gt;R²=0.993，回代误差&lt;1%&lt;br&gt;两个系数 0.052 和 0.2 就是全部" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="R1d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;代入&lt;/b&gt;&lt;br&gt;预报说明天14时雨5mm/h&lt;br&gt;→ 系数 = 1.169&lt;br&gt;→ 单量 = 查表(周三,14时) × 1.169&lt;br&gt;无雨小时 = ×1（基线原样）" vertex="1">
+          <mxGeometry height="70" width="280" x="720" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="R1e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;采样&lt;/b&gt;&lt;br&gt;24个小时按乘完后的比例抽签&lt;br&gt;抽到14时 → 该单出发时刻=14时" vertex="1">
+          <mxGeometry height="70" width="280" x="1040" y="175" as="geometry" />
+        </mxCell>
+
+        <mxCell id="R2H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#5B2C6F;" value="② 空间分布" vertex="1">
+          <mxGeometry height="28" width="160" x="40" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="R2a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;基线：263 个区域的份额表&lt;/b&gt;&lt;br&gt;晴天各区域出发量占比（实测直读）&lt;br&gt;PU/DO 各一套（起点/终点不对称）" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="R2b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;雨天乘子（雨时口径实测）&lt;/b&gt;&lt;br&gt;市中心密集区 ×1.07&lt;br&gt;远端枢纽/机场 ×0.7&lt;br&gt;外环 ×0.98（其余区域≈×1）" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="R2c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;事件乘子（查表，不拟合）&lt;/b&gt;&lt;br&gt;马拉松沿线 ×0.5（封路窗内）&lt;br&gt;美网场馆 ×3.5、客源区 ×7~17&lt;br&gt;跨年 ×0.004 冻结→×3.0 释放" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="R2d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;选乘子&lt;/b&gt;&lt;br&gt;下暴雨→用雨天乘子（低维，2~3个数）&lt;br&gt;有事件→叠加事件乘子（查表）&lt;br&gt;归一化→各区域份额=基线×乘子÷总和" vertex="1">
+          <mxGeometry height="70" width="280" x="720" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="R2e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;采样&lt;/b&gt;&lt;br&gt;263 个区域按乘完后的比例抽签&lt;br&gt;例：时代广场 1.21%×1.08=1.31%" vertex="1">
+          <mxGeometry height="70" width="280" x="1040" y="395" as="geometry" />
+        </mxCell>
+
+        <mxCell id="R3H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#833C0B;" value="③ 行程距离" vertex="1">
+          <mxGeometry height="28" width="160" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="R3a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;基线：三个子分布叠加（10个参数）&lt;/b&gt;&lt;br&gt;短途LN(1.74mi, 58%) + 中途LN(4.5mi, 30%)&lt;br&gt;+ 长途LN(13mi, 12%)&lt;br&gt;一次EM拟合定型，KS=0.006" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="R3b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;三个可调参数（暴雨档实测直读）&lt;/b&gt;&lt;br&gt;参数1 短途典型距离：左移 −6%（1.74→1.64mi）&lt;br&gt;参数2 短途占比：+2.5个百分点（58%→60.5%）&lt;br&gt;参数3 长途份额：×0.90（12%→10.8%，暴雪→0）" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="R3c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;数值来源&lt;/b&gt;&lt;br&gt;52个真实暴雨日 vs 晴天基线的直读差&lt;br&gt;（不是外推公式，是实测平均值）&lt;br&gt;其余7个参数（形状/中途/位置）全锁死" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="R3d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;调整&lt;/b&gt;&lt;br&gt;改混合分布的3个参数&lt;br&gt;→ 新分布（其余照抄基线）" vertex="1">
+          <mxGeometry height="70" width="280" x="720" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="R3e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4d6;strokeColor=#ed7d31;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;采样&lt;/b&gt;&lt;br&gt;先按新占比抽签选人群（短/中/长途）&lt;br&gt;再从该人群子分布抽距离&lt;br&gt;例：抽到短途→LN(1.64mi, σ=0.57)" vertex="1">
+          <mxGeometry height="70" width="280" x="1040" y="615" as="geometry" />
+        </mxCell>
+
+        <mxCell id="R4H" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#375623;" value="④ 速度" vertex="1">
+          <mxGeometry height="28" width="160" x="40" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="R4a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;基线：24 个中位速度 + 1 个宽度&lt;/b&gt;&lt;br&gt;每小时一个中位数（4时 18.8 到 16时 9.8 mph）&lt;br&gt;宽度参数 σ=0.44 全天共用（跨雨强稳定）" vertex="1">
+          <mxGeometry height="70" width="280" x="40" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="R4b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;实测三个点（小时雨强分箱）&lt;/b&gt;&lt;br&gt;0.3-1 mm/h：速度 −3.8%&lt;br&gt;1-4 mm/h：−5.3%&lt;br&gt;≥4 mm/h：−10.1%" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="R4c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;拟合系数曲线&lt;/b&gt;&lt;br&gt;折扣 = exp(−0.025 × ln(1 + r/0.3))&lt;br&gt;R²=0.985&lt;br&gt;两个系数 −0.025 和 0.3" vertex="1">
+          <mxGeometry height="70" width="300" x="360" y="915" as="geometry" />
+        </mxCell>
+        <mxCell id="R4d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;代入&lt;/b&gt;&lt;br&gt;雨强5mm/h → 折扣 ×0.93&lt;br&gt;无雨小时 = ×1" vertex="1">
+          <mxGeometry height="70" width="280" x="720" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="R4e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;采样&lt;/b&gt;&lt;br&gt;v = 中位(t) × 随机宽度因子 × 折扣&lt;br&gt;同一小时两单可差2倍多（真实快慢差异）&lt;br&gt;时长 = 距离 ÷ v（自动一致）" vertex="1">
+          <mxGeometry height="70" width="280" x="1040" y="835" as="geometry" />
+        </mxCell>
+
+        <mxCell id="B1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="采样输出：一单行程 = (出发时刻, 起点, 距离, 速度) → 终点配对 → 时长=距离÷速度" vertex="1">
+          <mxGeometry height="50" width="680" x="360" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="B2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;验证闭环&lt;/b&gt;：盲测（生成 vs 真实暴雨）&lt;br&gt;λ(t) 误差 −76% ｜ 距离 KS=0.024&lt;br&gt;速度 +15% ｜ 强雨外推偏差 4%" vertex="1">
+          <mxGeometry height="50" width="300" x="1060" y="1020" as="geometry" />
+        </mxCell>
+
+        <mxCell id="LEG" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=10;align=left;spacingLeft=6;" value="&lt;b&gt;图例&lt;/b&gt;：蓝＝出发时间｜紫＝空间｜橙＝距离｜绿＝速度｜黄＝实测数据｜橙边框＝拟合公式｜灰＝通用操作" vertex="1">
+          <mxGeometry height="36" width="1280" x="40" y="1090" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eA1" edge="1" parent="1" source="R1a" target="R1b" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="从表里读">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eA2" edge="1" parent="1" source="R1b" target="R1c" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="拟合">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eA3" edge="1" parent="1" source="R1c" target="R1d" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="代 r">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="690" y="290" /><mxPoint x="700" y="210" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eA4" edge="1" parent="1" source="R1d" target="R1e" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="乘上去">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eS1" edge="1" parent="1" source="R2a" target="R2b" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="下雨">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eS2" edge="1" parent="1" source="R2c" target="R2d" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.8;" value="有事件">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="690" y="510" /><mxPoint x="700" y="450" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eS3" edge="1" parent="1" source="R2d" target="R2e" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="归一化">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eD1" edge="1" parent="1" source="R3a" target="R3b" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="读旋钮值">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eD2" edge="1" parent="1" source="R3b" target="R3c" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="来源">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eD3" edge="1" parent="1" source="R3c" target="R3d" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.8;" value="改参数">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="690" y="730" /><mxPoint x="700" y="670" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eD4" edge="1" parent="1" source="R3d" target="R3e" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="抽签">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eV1" edge="1" parent="1" source="R4a" target="R4b" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="从表读">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eV2" edge="1" parent="1" source="R4b" target="R4c" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="拟合">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eV3" edge="1" parent="1" source="R4c" target="R4d" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="代 r">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="690" y="950" /><mxPoint x="700" y="870" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eV4" edge="1" parent="1" source="R4d" target="R4e" style="rounded=1;html=1;strokeWidth=1.5;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="乘上去">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="eF1" edge="1" parent="1" source="R1e" target="B1" style="rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.2;entryY=0;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1180" y="1000" /><mxPoint x="500" y="1000" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eF2" edge="1" parent="1" source="R3e" target="B1" style="rounded=1;html=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1180" y="1000" /><mxPoint x="700" y="1000" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="eF3" edge="1" parent="1" source="B1" target="B2" style="rounded=1;html=1;strokeWidth=1.5;dashed=1;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="校验">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

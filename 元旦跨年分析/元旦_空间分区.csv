@@ -1,0 +1,258 @@
+﻿zone_id,zone_name,相对变化%
+34,Brooklyn Navy ,249.5
+27,Breezy Point/F,140.2
+12,Battery Park,116.2
+2,Jamaica Bay,109.2
+207,Saint Michaels,-90.9
+30,Broad Channel,77.3
+194,Randalls Islan,-70.1
+253,Willets Point,-67.8
+80,East Williamsb,64.5
+201,Rockaway Park,63.3
+37,Bushwick South,60.9
+36,Bushwick North,57.7
+173,North Corona,54.3
+99,Freshkills Par,48.2
+77,East New York/,47.6
+13,Battery Park C,-47.6
+111,Green-Wood Cem,46.5
+237,Upper East Sid,-43.8
+236,Upper East Sid,-42.9
+83,Elmhurst/Maspe,42.9
+44,Charleston/Tot,42.5
+198,Ridgewood,39.1
+157,Maspeth,37.8
+235,University Hei,36.5
+243,Washington Hei,34.8
+52,Cobble Hill,-34.3
+140,Lenox Hill Eas,-34.2
+166,Morningside He,-33.3
+161,Midtown Center,-33.3
+143,Lincoln Square,-33.2
+138,LaGuardia Airp,-33.1
+129,Jackson Height,32.5
+125,Hudson Sq,-32.5
+56,Corona,32.4
+162,Midtown East,-31.9
+127,Inwood,31.8
+57,Corona,31.3
+256,Williamsburg (,31.2
+84,Eltingville/An,29.3
+113,Greenwich Vill,-28.5
+241,Van Cortlandt ,28.1
+231,TriBeCa/Civic ,-27.9
+248,West Farms/Bro,27.7
+23,Bloomfield/Eme,-27.6
+225,Stuyvesant Hei,27.5
+163,Midtown North,-26.5
+200,Riverdale/Nort,-25.8
+246,West Chelsea/H,-25.7
+142,Lincoln Square,-25.5
+260,Woodside,25.5
+223,Steinway,25.5
+55,Coney Island,25.4
+148,Lower East Sid,25.1
+255,Williamsburg (,25.1
+136,Kingsbridge He,24.8
+119,Highbridge,24.2
+190,Prospect Park,-24.1
+230,Times Sq/Theat,-24.0
+60,Crotona Park E,23.9
+100,Garment Distri,-23.8
+121,Hillcrest/Pomo,-23.7
+211,SoHo,-23.6
+196,Rego Park,-23.2
+234,Union Sq,-23.2
+9,Auburndale,-22.9
+249,West Village,-22.6
+73,East Flushing,22.5
+232,Two Bridges/Se,22.4
+94,Fordham South,22.3
+51,Co-Op City,-22.2
+204,Rossville/Wood,21.9
+135,Kew Gardens Hi,-21.8
+17,Bedford,21.4
+131,Jamaica Estate,-21.2
+150,Manhattan Beac,21.0
+46,City Island,20.9
+8,Astoria Park,20.7
+7,Astoria,20.7
+95,Forest Hills,-20.7
+116,Hamilton Heigh,20.5
+115,Grymes Hill/Cl,-20.5
+169,Mount Hope,20.2
+258,Woodhaven,20.2
+233,UN/Turtle Bay ,-20.2
+98,Fresh Meadows,-20.0
+65,Downtown Brook,-19.8
+261,World Trade Ce,-19.7
+238,Upper West Sid,-19.2
+156,Mariners Harbo,-18.8
+242,Van Nest/Morri,-18.7
+147,Longwood,18.6
+61,Crown Heights ,18.6
+63,Cypress Hills,18.6
+82,Elmhurst,18.3
+124,Howard Beach,18.1
+219,Springfield Ga,-18.1
+164,Midtown South,-18.0
+208,Schuylerville/,18.0
+184,Pelham Bay Par,-17.9
+69,East Concourse,17.9
+168,Mott Haven/Por,17.9
+79,East Village,17.7
+214,South Beach/Do,-17.2
+6,Arrochar/Fort ,-16.8
+117,Hammels/Arvern,16.7
+197,Richmond Hill,16.6
+130,Jamaica,-16.1
+218,Springfield Ga,-15.9
+31,Bronx Park,-15.6
+120,Highbridge Par,15.6
+33,Brooklyn Heigh,-15.6
+70,East Elmhurst,15.4
+227,Sunset Park Ea,15.4
+93,Flushing Meado,15.4
+109,Great Kills,15.3
+59,Crotona Park,15.3
+118,Heartland Vill,-15.2
+244,Washington Hei,15.0
+58,Country Club,14.8
+141,Lenox Hill Wes,-14.5
+220,Spuyten Duyvil,-14.5
+193,Queensbridge/R,-14.4
+18,Bedford Park,14.3
+212,Soundview/Bruc,14.3
+15,Bay Terrace/Fo,-14.2
+183,Pelham Bay,-14.0
+132,JFK Airport,13.7
+182,Parkchester,-13.5
+210,Sheepshead Bay,-13.4
+112,Greenpoint,13.1
+4,Alphabet City,13.0
+239,Upper West Sid,-12.7
+149,Madison,-12.6
+185,Pelham Parkway,-12.5
+240,Van Cortlandt ,12.5
+155,Marine Park/Mi,-12.2
+133,Kensington,12.0
+68,East Chelsea,-11.9
+262,Yorkville East,-11.7
+144,Little Italy/N,-11.7
+32,Bronxdale,11.5
+172,New Dorp/Midla,-11.3
+245,West Brighton,-11.3
+90,Flatiron,-11.2
+139,Laurelton,-11.2
+229,Sutton Place/T,-11.0
+40,Carroll Garden,-10.8
+101,Glen Oaks,-10.7
+87,Financial Dist,-10.7
+170,Murray Hill,-10.6
+49,Clinton Hill,10.6
+176,Oakwood,-10.5
+76,East New York,-10.5
+167,Morrisania/Mel,10.4
+221,Stapleton,-10.4
+47,Claremont/Bath,10.4
+226,Sunnyside,-10.4
+146,Long Island Ci,10.3
+171,Murray Hill-Qu,10.3
+181,Park Slope,-10.3
+78,East Tremont,10.2
+217,South Williams,10.2
+222,Starrett City,10.1
+134,Kew Gardens,-10.0
+67,Dyker Heights,-9.9
+74,East Harlem No,9.6
+158,Meatpacking/We,-9.4
+42,Central Harlem,9.2
+206,Saint George/N,-9.2
+97,Fort Greene,-9.2
+38,Cambria Height,-9.0
+108,Gravesend,8.9
+186,Penn Station/M,-8.6
+20,Belmont,-8.1
+91,Flatlands,-7.9
+251,Westerleigh,7.9
+28,Briarwood/Jama,-7.5
+66,DUMBO/Vinegar ,7.5
+205,Saint Albans,-7.4
+106,Gowanus,-7.2
+128,Inwood Hill Pa,7.2
+123,Homecrest,-7.2
+48,Clinton East,-7.2
+86,Far Rockaway,7.0
+252,Whitestone,-6.9
+75,East Harlem So,-6.9
+126,Hunts Point,-6.8
+85,Erasmus,6.7
+22,Bensonhurst We,6.6
+92,Flushing,6.4
+81,Eastchester,-5.8
+209,Seaport,5.8
+187,Port Richmond,-5.7
+122,Hollis,-5.7
+21,Bensonhurst Ea,5.5
+175,Oakland Garden,-5.4
+114,Greenwich Vill,-5.3
+247,West Concourse,5.1
+25,Boerum Hill,5.1
+203,Rosedale,5.0
+10,Baisley Park,-5.0
+259,Woodlawn/Wakef,5.0
+179,Old Astoria,4.9
+216,South Ozone Pa,4.9
+3,Allerton/Pelha,-4.9
+39,Canarsie,-4.8
+71,East Flatbush/,4.7
+215,South Jamaica,4.7
+177,Ocean Hill,4.6
+154,Marine Park/Fl,4.6
+64,Douglaston,-4.6
+213,Soundview/Cast,-4.5
+14,Bay Ridge,-4.4
+152,Manhattanville,4.3
+263,Yorkville West,-4.2
+35,Brownsville,-3.8
+19,Bellerose,3.7
+191,Queens Village,-3.7
+54,Columbia Stree,-3.3
+88,Financial Dist,3.2
+24,Bloomingdale,-3.2
+137,Kips Bay,3.1
+96,Forest Park/Hi,3.1
+165,Midwood,3.1
+45,Chinatown,-3.0
+102,Glendale,3.0
+43,Central Park,2.9
+228,Sunset Park We,2.8
+5,Arden Heights,-2.7
+189,Prospect Heigh,2.6
+53,College Point,2.6
+153,Marble Hill,-2.6
+151,Manhattan Vall,2.5
+29,Brighton Beach,2.0
+50,Clinton West,-2.0
+195,Red Hook,2.0
+16,Bayside,1.7
+174,Norwood,1.7
+107,Gramercy,-1.6
+145,Long Island Ci,-1.5
+178,Ocean Parkway ,-1.5
+26,Borough Park,1.5
+224,Stuy Town/Pete,1.4
+62,Crown Heights ,1.3
+41,Central Harlem,-1.3
+89,Flatbush/Ditma,-1.3
+11,Bath Beach,1.1
+188,Prospect-Leffe,1.0
+160,Middle Village,-0.8
+72,East Flatbush/,-0.7
+192,Queensboro Hil,0.4
+257,Windsor Terrac,-0.4
+202,Roosevelt Isla,-0.3
+250,Westchester Vi,0.2
+180,Ozone Park,-0.1
+254,Williamsbridge,-0.0
+159,Melrose South,0.0
