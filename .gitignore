@@ -21,3 +21,6 @@ __pycache__/
 
 # 外部大数据集（DiDi 演练数据 1.2GB）
 didi_data/
+
+# 合成演示大数据（可由 make_demo_data.py 随时再生）
+wireless_adjust/demo_raw.csv
