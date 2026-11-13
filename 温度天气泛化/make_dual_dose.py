@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei', 'SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
-# ---- 365 个雨时标定样本（轻中雨日×雨时, 与标定同口径）----
+# ---- 365 个标定样本（所有雨日的 0.3~4mm/h 雨时, 与 validate_06 同口径）----
 Agg = np.load(r'D:/AI/条件转化/.flow_agg.npz', allow_pickle=True)
 Df = np.load(r'D:/AI/条件转化/.flow_days.npz', allow_pickle=True)
 wdates = list(Agg['dates']); hour_cnt = Agg['hour_cnt'].astype(np.float64)
@@ -32,11 +32,11 @@ for yi in range(2):
             if len(vals) >= 2: lam0[yi, dw, h] = vals.mean()
 rs, ys = [], []
 for i in range(nw):
-    if kl_w[i] not in ('light', 'medium'): continue
+    if kl_w[i] == 'dry': continue                 # 所有雨日(含强雨日的低雨强时段, 与 validate_06 同口径)
     for h in range(24):
         r_h = inten_w[i, h]
         L = lam0[yidx[i], dow_w[i], h]
-        if r_h >= 0.3 and not np.isnan(L) and L > 0:
+        if 0.3 <= r_h < 4.0 and not np.isnan(L) and L > 0:   # 标定箱 0.3~4mm/h
             rs.append(r_h); ys.append(hour_cnt[i, h] / L)
 rs = np.array(rs); ys = np.array(ys)
 print(f'雨时标定样本: {len(rs)} 个')
@@ -58,7 +58,7 @@ for rr, lab, off in [(10, '+20%', (-30, 10)), (30, '+26%', (5, 10)), (148, '+34%
 ax.axvline(148, color='#999', ls=':', lw=1.2)
 ax.annotate('观测上限 148', (150, 1.0), fontsize=9, color='#666', ha='left')
 ax.set_xlabel('雨强 r (mm/h)'); ax.set_ylabel('出发量乘子')
-ax.set_title('① 泛化维=雨强：δvol(r)=0.052·ln(1+r/0.2)\n176 个同时钟点雨时样本标定 · 强雨盲测偏差 4%', fontsize=11.5, loc='left', color='#1F4E79')
+ax.set_title('① 泛化维=雨强：δvol(r)=0.052·ln(1+r/0.2)\n365 个低雨强雨时样本(0.3~4mm/h)标定 · 强雨盲测偏差 4%', fontsize=11.5, loc='left', color='#1F4E79')
 ax.grid(alpha=0.3); ax.set_ylim(0.9, 1.48); ax.set_xlim(0, 165)
 ax.legend(fontsize=9, loc='upper left')
 
