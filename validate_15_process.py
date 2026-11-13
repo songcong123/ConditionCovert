@@ -126,10 +126,20 @@ ax.legend(fontsize=9); ax.grid(alpha=.3); ax.set_ylim(6, 20)
 
 # ================= 行3: 距离 =================
 bins = np.geomspace(.05, 40, 60)
+B3 = J['B3']
+xs_d = np.geomspace(.05, 40, 500)
+def mix_pdf4(x):
+    B = B3
+    p = (B['w1'] * stats.lognorm.pdf(x, B['sd1'], scale=np.exp(B['mu1']))
+         + B['w2'] * stats.lognorm.pdf(x, B['sd2'], scale=np.exp(B['mu2']))
+         + B['w_ap'] * stats.lognorm.pdf(x, B['sd_ap'], scale=np.exp(B['mu_ap'])))
+    p = p + np.where(x >= B['xmin'], B['w_pa'] * B['alpha'] / B['xmin'] * (x / B['xmin']) ** (-(B['alpha'] + 1)), 0)
+    return p
 ax = fig.add_subplot(gs[2, 0])
-ax.hist(dd_base, bins=bins, density=True, color='#F8CBAD', edgecolor='#ED7D31', lw=.4)
+ax.plot(xs_d, mix_pdf4(xs_d), lw=2.4, color='#ED7D31')
+ax.fill_between(xs_d, 0, mix_pdf4(xs_d), color='#F8CBAD', alpha=.55)
 ax.set_xscale('log')
-ax.set_title('基线距离分布（短途大峰+机场鼓包）', fontsize=11)
+ax.set_title('基线距离分布（短途大峰+机场鼓包，理论曲线）', fontsize=11)
 ax.set_xlabel('距离 (mi, log)'); ax.set_ylabel('密度'); ax.grid(alpha=.3, which='both')
 
 ax = fig.add_subplot(gs[2, 1])
@@ -150,9 +160,13 @@ ax.annotate('旋钮3：机场份额↓×0.9', xy=(13, B['w_ap'] * stats.lognorm.
 ax.set_title('三个旋钮（当日按实测校准演示）', fontsize=11)
 ax.set_xlabel('距离 (mi, log)'); ax.grid(alpha=.3, which='both')
 
+def logkde_pdf(dd, x):
+    kde = stats.gaussian_kde(np.log(dd))
+    return kde(np.log(x)) / x                      # log 空间密度 → 原空间密度
 ax = fig.add_subplot(gs[2, 2])
-ax.hist(dd_base, bins=bins, density=True, alpha=.45, color='#BFBFBF', label='晴天基线')
-ax.hist(dd_act, bins=bins, density=True, alpha=.45, color='#C00000', label='真实当天')
+ax.plot(xs_d, logkde_pdf(dd_base, xs_d), lw=2.2, color='#7F7F7F', label='晴天基线（实测平滑）')
+ax.plot(xs_d, logkde_pdf(dd_act, xs_d), lw=2.2, color='#C00000', label='真实当天（实测平滑）')
+ax.fill_between(xs_d, 0, logkde_pdf(dd_act, xs_d), color='#C00000', alpha=.10)
 ax.axvline(np.median(dd_base), color='#7F7F7F', ls='--', lw=1.6)
 ax.axvline(np.median(dd_act), color='#C00000', ls='--', lw=1.6)
 ax.set_xscale('log')
@@ -164,8 +178,8 @@ ax.set_xlabel('距离 (mi, log)'); ax.legend(fontsize=9); ax.grid(alpha=.3, whic
 # ================= 底部: 空间注记 =================
 ax = fig.add_subplot(gs[3, :]); ax.axis('off')
 ax.text(0.5, 0.5,
-        '第四个量·空间分布：暴雨天【不动】——实测 24 个强雨日的起点热力图与晴天差异 JS=0.0002（几乎重合），'
-        '雨把全城均匀调亮、不改变“哪里热”。（事件才动空间，那是另一套算子）',
+        '第四个量·空间分布：日级【≈不动】（升消相抵，JS=0.0002）；雨时小时级有结构（机场 −27%、核心 +6%，γ 公式）；'
+        '事件才大动空间（场馆×3.5 等，另一套查表算子）',
         ha='center', va='center', fontsize=12, family='Microsoft YaHei',
         bbox=dict(boxstyle='round', fc='#F3EEF7', ec='#9673A6', alpha=.95))
 
