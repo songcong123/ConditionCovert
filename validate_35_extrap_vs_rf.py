@@ -33,7 +33,7 @@ for dd, hh, mm in zip(D['rh_date'], D['rh_hour'].astype(int), D['rh_mm']):
     if str(dd) in didx: inten[didx[str(dd)], hh] = mm
 
 # 样本(同 validate_22)
-X_all, y_all = [], []
+X_all, y_all, meta_day, meta_hr = [], [], [], []
 for i in range(len(dates)):
     if kl[i] == 'dry': continue
     for h in range(24):
@@ -46,7 +46,10 @@ for i in range(len(dates)):
         X_all.append([np.log1p(r_now), np.log1p(r_lag1), is_peak, is_we,
                       is_peak * np.log1p(r_now), is_we * np.log1p(r_now), h])
         y_all.append(hc[i, h] / base - 1)
+        meta_day.append(i); meta_hr.append(h)
 X = np.array(X_all); y = np.array(y_all)
+meta_day = np.array(meta_day); meta_hr = np.array(meta_hr)
+meta_day = np.array(meta_day); meta_hr = np.array(meta_hr)
 r_raw = np.expm1(X[:, 0])
 print(f'样本 {len(y)} 个雨时 | 雨强范围 {r_raw.min():.1f}~{r_raw.max():.0f} mm/h')
 
@@ -135,37 +138,71 @@ print(f'趋势斜率(d效应/d ln r): 实测 {sl_act:+.3f} | 公式 {sl_f:+.3f} 
 print('注: 逐点 MAE 的小时级自然波动底噪约 ±40pp, 协议B 的 MAE 差异(20 vs 43pp)主要由"RF常数≈测试集均值"贡献, 不构成外推证据')
 
 # ================= 图 =================
-fig, axes = plt.subplots(1, 2, figsize=(14.5, 6.4))
-fig.suptitle('与真实的差异：内插场景 RF 贴对角线，外推场景只有公式还贴着',
-             fontsize=14.5, fontweight='bold', y=1.02)
+# ---- 分箱实测(全雨强, 域内+域外) + 两方法预测 ----
+BINS5 = [(0.3, 1.0, '0.3-1'), (1.0, 4.0, '1-4'), (4.0, 8.0, '4-8'), (8.0, 16.0, '8-16'), (16.0, 1e9, '≥16')]
+b_r, b_med, b_lo, b_hi, b_f, b_rf, b_n = [], [], [], [], [], [], []
+# 全样本的 RF 预测(rfB 只见过 r<4) 与公式预测
+rf_pred_all = rfB.predict(X)
+f_pred_all = formula(r_raw)
+# 权重 = 同星期×钟点干日基线(与 validate_06 bin_stats 同口径: 体积加权均值)
+wt_all = np.array([lam[wd[meta_day[j2]], meta_hr[j2]] for j2 in range(len(y))])
+for lo, hi, nm in BINS5:
+    m = (r_raw >= lo) & (r_raw < hi)
+    if m.sum() < 10: continue
+    b_r.append(float(np.exp(np.mean(np.log(r_raw[m])))))       # 几何均值位置
+    b_med.append(float(np.average(y[m], weights=wt_all[m])))   # 加权均值(06 同口径)
+    b_lo.append(float(np.percentile(y[m], 25))); b_hi.append(float(np.percentile(y[m], 75)))
+    b_f.append(float(np.average(f_pred_all[m], weights=wt_all[m])))
+    b_rf.append(float(np.average(rf_pred_all[m], weights=wt_all[m])))
+    b_n.append(int(m.sum()))
+b_r = np.array(b_r); b_med = np.array(b_med)
+print('分箱: r位置', np.round(b_r, 1), '| 实测中位', np.round(b_med * 100, 1), '| 公式', np.round(np.array(b_f) * 100, 1), '| RF', np.round(np.array(b_rf) * 100, 1))
 
-def scat(ax, y_t, pf, pr, title, tag):
-    lim = np.percentile(np.abs(np.concatenate([y_t, pf, pr])), 99.5) * 100 + 5
-    ax.plot([-lim, lim], [-lim, lim], color='#1A1A1A', lw=1.2, ls='--', zorder=1)
-    ax.scatter(y_t * 100, pf * 100, s=26, alpha=0.55, color=NAVY, zorder=3, label='公式')
-    ax.scatter(y_t * 100, pr * 100, s=26, alpha=0.55, color=RED, zorder=3, label='随机森林')
-    mf = np.mean(np.abs(y_t - pf)); mr = np.mean(np.abs(y_t - pr))
-    rf_ = np.corrcoef(y_t, pf)[0, 1]; rr_ = np.corrcoef(y_t, pr)[0, 1]
-    ax.text(0.03, 0.95, f'公式   MAE {mf*100:.0f}pp   r={rf_:.2f}'.replace('   ', '  |  '),
-            transform=ax.transAxes, fontsize=10.5, color=NAVY, va='top',
-            bbox=dict(boxstyle='round,pad=0.3', fc='white', ec=NAVY, alpha=0.9))
-    ax.text(0.03, 0.855, f'RF     MAE {mr*100:.0f}pp   r={rr_:.2f}'.replace('   ', '  |  '),
-            transform=ax.transAxes, fontsize=10.5, color=RED, va='top',
-            bbox=dict(boxstyle='round,pad=0.3', fc='white', ec=RED, alpha=0.9))
-    ax.set_xlabel('真实效应 (pp)'); ax.set_ylabel('预测效应 (pp)')
-    ax.set_title(title, fontsize=12, loc='left', color=NAVY)
-    ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim); ax.set_aspect('equal')
-    ax.grid(alpha=0.3); ax.legend(fontsize=10, loc='lower right')
-    ax.text(0.98, 0.03, tag, transform=ax.transAxes, fontsize=9, color=MUTED, ha='right')
+fig, axes = plt.subplots(1, 2, figsize=(15, 5.8), gridspec_kw={'width_ratios': [1.5, 1]})
+fig.suptitle('与真实的差异：实测(误差棒=25~75分位) vs 公式 vs 随机森林 —— 训练都只用 r<4mm/h(左侧阴影)',
+             fontsize=13.5, fontweight='bold', y=1.03)
 
-scat(axes[0], y[teA][r_raw[teA] < 4], formula(r_raw[teA][r_raw[teA] < 4]),
-     rfA.predict(X[teA][r_raw[teA] < 4]),
-     '① 内插(训练见过的范围 r<4): RF 赢', f'测试点 {int((r_raw[teA]<4).sum())} 个')
-scat(axes[1], y_te, formula(r_te), rfB.predict(X_te),
-     '② 外推(训练从未见过 r≥4): RF 塌成水平带', f'测试点 {len(y_te)} 个')
+# ① 主图: 预测曲线 + 实测箱误差棒
+ax = axes[0]
+rr2 = np.geomspace(0.3, 60, 300)
+ax.plot(rr2, formula(rr2) * 100, lw=2.6, color=NAVY, label='公式预测曲线', zorder=4)
+ax.plot(rr2, rf_curve(rfB, rr2) * 100, lw=2.6, color=RED, label='RF 预测曲线(只训练过 r<4)', zorder=4)
+yerr = np.array([np.array(b_med) - np.array(b_lo), np.array(b_hi) - np.array(b_med)]) * 100
+ax.errorbar(b_r, b_med * 100, yerr=yerr, fmt='o', ms=9, color='#1A1A1A',
+            ecolor='#7F7F7F', elinewidth=2.2, capsize=6, capthick=2.2, zorder=5, label='实测中位(误差棒=IQR)')
+for x_, y_, nn in zip(b_r, b_med, b_n):
+    ax.annotate(f'n={nn}', (x_, (np.array(b_hi)[list(b_r).index(x_)]) * 100 + 2), fontsize=8.5, color=MUTED, ha='center')
+ax.axvspan(0.3, 4, color='#D6E4F0', alpha=0.35, zorder=1)
+ax.axvline(4, color=MUTED, ls='--', lw=1.4)
+ax.text(2.0, 33, '训练域(r<4)', fontsize=10, color=NAVY, ha='center')
+ax.text(11, 33, '盲测域(从未见过)', fontsize=10, color=MUTED, ha='center')
+ax.set_xscale('log'); ax.set_xlim(0.3, 60)
+ax.set_xlabel('雨强 r (mm/h, log)'); ax.set_ylabel('出发量效应 (%)')
+ax.set_title('① 预测 vs 实测：域内两条线都在误差棒内; 域外公式仍穿误差棒、RF 脱离', fontsize=11.5, loc='left', color=NAVY)
+ax.legend(fontsize=9.5, loc='upper left'); ax.grid(alpha=0.3, which='both')
 
-fig.text(0.5, 0.003,
-         '读法：点贴 45° 虚线=预测准。内插(左) RF 点云贴线、公式散布大；外推(右) RF 输出恒定→点云水平摊开(与真实无关, r≈0)，公式仍保持正相关。训练协议：两者都只用 r<4mm/h 训练, 右侧为其从未见过的大雨档',
+# ② 分箱误差柱: |预测中位 - 实测中位|
+ax = axes[1]
+xb = np.arange(len(b_r)); bw = 0.36
+err_f = np.abs(np.array(b_f) - b_med) * 100
+err_rf = np.abs(np.array(b_rf) - b_med) * 100
+in_dom = np.array(b_r) < 4
+cols_f = ['#8FAADC'] * len(xb); cols_r = ['#F4A6A6'] * len(xb)
+for k in range(len(xb)):
+    if not in_dom[k]: cols_f[k] = NAVY; cols_r[k] = RED
+ax.bar(xb - bw / 2, err_f, bw, color=cols_f, edgecolor=NAVY, label='公式')
+ax.bar(xb + bw / 2, err_rf, bw, color=cols_r, edgecolor=RED, label='RF')
+for xx, vv in zip(xb - bw / 2, err_f): ax.annotate(f'{vv:.0f}', (xx, vv + 0.3), ha='center', fontsize=9.5, color=NAVY)
+for xx, vv in zip(xb + bw / 2, err_rf): ax.annotate(f'{vv:.0f}', (xx, vv + 0.3), ha='center', fontsize=9.5, color=RED)
+ax.set_xticks(xb); ax.set_xticklabels([nm for _, _, nm in BINS5[:len(xb)]], fontsize=9.5)
+ax.axvline(1.5, color=MUTED, ls='--', lw=1.2)
+ax.text(1.5, max(err_f.max(), err_rf.max()) * 0.93, '← 训练域 | 盲测域 →', fontsize=9.5, color=MUTED, ha='center')
+ax.set_ylabel('|预测 − 实测| (pp, 越矮越好)')
+ax.set_title('② 与真实的偏差：域内(浅色)RF 小; 域外(深色)只剩公式', fontsize=11.5, loc='left', color=NAVY)
+ax.legend(fontsize=10); ax.grid(alpha=0.3, axis='y')
+
+fig.text(0.5, 0.004,
+         '训练协议：公式与 RF 都只用 r<4mm/h 的轻中雨训练。域内(左两箱)两者都落在实测误差棒内；域外(右三箱) RF 输出恒定 +4.5%(脱离误差棒)，公式继续沿饱和形状延伸、仍穿实测误差棒',
          ha='center', fontsize=10, color=DGREEN, fontweight='bold', wrap=True)
 plt.tight_layout()
 fig.savefig(r'D:/AI/条件转化/外推vs随机森林.png', dpi=150, bbox_inches='tight', facecolor='white')
