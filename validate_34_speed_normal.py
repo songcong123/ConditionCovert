@@ -90,10 +90,8 @@ ax.legend(fontsize=8.5, loc='upper right'); ax.grid(alpha=0.3)
 
 # ---- ③ δv(r) 剂量曲线 ----
 ax = axes[2]
-# 真实数据点: 分雨强箱的实测平移量(箱内逐条 log 速度残差的中位, validate_06 同口径)
+# ---- 数据准备(分箱统计 + 逐时观测) ----
 rainy = np.where(kl != 'dry')[0]
-boxes = [(0.3, 1.0, '0.3-1'), (1.0, 4.0, '1-4'), (4.0, 12.0, '4-12'), (12.0, 1e9, '≥12')]
-# 基线: 同星期同钟点干日中位 log 速度
 dow_map = np.array([int(np.datetime64(d, 'D').view('int64')) % 7 for d in dates])
 mu0_how = np.zeros((7, 24))
 for k7 in range(7):
@@ -101,7 +99,8 @@ for k7 in range(7):
     for h in range(24):
         mm = np.isin(spdD, sel) & (spdH == h) & (spdV > 1) & (spdV < 60)
         mu0_how[k7, h] = np.median(np.log(spdV[mm])) if mm.sum() > 50 else np.nan
-pt_r, pt_dv, pt_n = [], [], []
+boxes = [(0.3, 1.0, '0.3-1'), (1.0, 4.0, '1-4'), (4.0, 12.0, '4-12'), (12.0, 1e9, '>=12')]
+pt_r, pt_dv = [], []
 for lo, hi, nm in boxes:
     bm = np.zeros((n, 24), bool)
     bm[rainy] = (inten[rainy] >= lo) & (inten[rainy] < hi)
@@ -109,20 +108,41 @@ for lo, hi, nm in boxes:
     base_h = mu0_how[dow_map[spdD], spdH]
     ok = msk & ~np.isnan(base_h)
     if ok.sum() > 200:
-        res = np.log(spdV[ok]) - base_h[ok]
-        pt_r.append(float(inten[bm].mean())); pt_dv.append(float(np.median(res))); pt_n.append(int(ok.sum()))
-        print(f'实测箱 {nm}mm/h: r̄={pt_r[-1]:.2f} δv={pt_dv[-1]:+.4f} n={pt_n[-1]:,}')
+        pt_r.append(float(inten[bm].mean())); pt_dv.append(float(np.median(np.log(spdV[ok]) - base_h[ok])))
+pt_r = np.array(pt_r); pt_dv = np.array(pt_dv)
+# 层1: 逐时真实观测散点(每个雨时一个点: 当小时雨强, 当小时中位log残差) —— 未做任何聚合
+sc_r, sc_dv = [], []
+for i2 in rainy:
+    for h in range(24):
+        r_h = inten[i2, h]
+        if r_h < 0.3: continue
+        b0 = mu0_how[dow_map[i2], h]
+        if np.isnan(b0): continue
+        mm2 = (spdD == i2) & (spdH == h) & (spdV > 1) & (spdV < 60)
+        if mm2.sum() < 30: continue
+        sc_r.append(r_h); sc_dv.append(float(np.median(np.log(spdV[mm2])) - b0))
+sc_r = np.array(sc_r); sc_dv = np.array(sc_dv)
+print(f'逐时观测点: {len(sc_r)} 个')
+ax.scatter(sc_r, sc_dv, s=14, alpha=0.35, color='#B0B0B0', zorder=3, label=f'逐时真实观测(n={len(sc_r)})')
+# 层2: 公式曲线(只用 0.3-1 / 1-4 两箱标定)
 rr = np.linspace(0, 30, 200)
-ax.plot(rr, dv(rr), lw=2.6, color=RED, label='公式(两点标定)')
-ax.plot(pt_r, pt_dv, 's', ms=10, color=NAVY, zorder=5, label='实测(分箱中位)')
-for x_, y_, nn in zip(pt_r, pt_dv, pt_n):
-    ax.annotate(f'{y_:+.3f} (n={nn//1000}k)', (x_, y_), textcoords='offset points',
-                xytext=(8, -4), fontsize=8.5, color=NAVY)
-ax.axhline(0, color=GREY, ls=':', lw=1)
+ax.plot(rr, dv(rr), lw=2.6, color=RED, zorder=4, label='公式(仅低两箱标定)')
+# 层3: 分箱中位 —— 标定箱(空心) vs 盲测箱(实心)
+for k3, (lo, hi, nm) in enumerate(boxes):
+    cal = k3 < 2      # 前两箱参与标定
+    ax.plot([pt_r[k3]], [pt_dv[k3]], 's', ms=13, zorder=6,
+            markerfacecolor='none' if cal else NAVY, markeredgecolor=GREY if cal else NAVY, markeredgewidth=2)
+    ax.annotate(f'{pt_dv[k3]:+.3f}', (pt_r[k3], pt_dv[k3]), textcoords='offset points',
+                xytext=(9, 4 if cal else -14), fontsize=9, color=GREY if cal else NAVY)
+ax.plot([], [], 's', ms=13, markerfacecolor='none', markeredgecolor=GREY, markeredgewidth=2, label='标定箱中位(在曲线上是必然)')
+ax.plot([], [], 's', ms=13, markerfacecolor=NAVY, markeredgecolor=NAVY, label='盲测箱中位(未参与拟合)')
 ax.set_xlabel('雨强 r (mm/h)'); ax.set_ylabel('μ 的平移量 δv(r)')
-ax.set_title('③ 平移量公式(全雨时池化标定)：$\delta_v$=-0.0221·ln(1+r/0.2)', fontsize=11.5, loc='left', color=NAVY)
-ax.text(0.97, 0.06, '注: 公式为全部雨时的平均效应; 本例强雨早峰实测减速更深(早峰×强雨交互)', transform=ax.transAxes, fontsize=8, color=MUTED, ha='right', bbox=dict(boxstyle='round,pad=0.3', fc='#FFF2CC', ec='#D6B656', alpha=0.9))
-ax.legend(fontsize=9, loc='upper left')
+ax.set_xscale('log')
+ax.set_title('③ 平移量公式 $\delta_v$=-0.0221·ln(1+r/0.2) + 真实观测', fontsize=11.5, loc='left', color=NAVY)
+ax.text(0.97, 0.05, '曲线仅穿过灰空心点(其标定箱); 蓝实心点(≥4mm/h)为盲测', transform=ax.transAxes,
+        fontsize=8.5, color=MUTED, ha='right', va='bottom',
+        bbox=dict(boxstyle='round,pad=0.3', fc='#FFF2CC', ec='#D6B656', alpha=0.9))
+ax.grid(alpha=0.3, which='both')
 ax.grid(alpha=0.3)
 
 fig.text(0.5, 0.002,
