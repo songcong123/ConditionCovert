@@ -68,14 +68,9 @@ ax.hist(np.log(v_rain), bins=40, density=True, alpha=0.30, color='#F4B6B6', labe
 ax.plot(gx, stats.norm.pdf(gx, mu0, sig0), lw=2.6, color=NAVY, label=f'晴天正态 $N(\mu_0={mu0:.2f},\ \sigma_0={sig0:.2f})$')
 ax.plot(gx, stats.norm.pdf(gx, mu_r, sig0), lw=2.6, color=RED, label=f'雨天正态 $N(\mu_r={mu_r:.2f},\ \sigma_0)$ ← $\mu$ 左移, 同宽')
 ax.axvline(mu0, color=NAVY, ls='--', lw=1.4); ax.axvline(mu_r, color=RED, ls='--', lw=1.4)
-ax.annotate('', xy=(mu_r, stats.norm.pdf(mu0, mu0, sig0) * 0.72), xytext=(mu0, stats.norm.pdf(mu0, mu0, sig0) * 0.72),
-            arrowprops=dict(arrowstyle='<->', color=RED, lw=1.8))
-ax.text((mu0 + mu_r) / 2, stats.norm.pdf(mu0, mu0, sig0) * 0.76,
-        f'平移 δv({r_med:.0f}mm/h)={dv(r_med):.3f}\n中位 {np.exp(mu0):.1f}→{np.exp(mu_r):.1f} mph',
-        ha='center', fontsize=9.5, color=RED)
 ax.set_xlabel('log 速度 (ln mph)'); ax.set_ylabel('密度')
 ax.set_title('① log 速度轴：严格正态，形状不变', fontsize=11.5, loc='left', color=NAVY)
-ax.legend(fontsize=8.5, loc='upper right'); ax.grid(alpha=0.3)
+ax.legend(fontsize=8.5, loc='upper left'); ax.grid(alpha=0.3)
 
 # ---- ② 线性速度轴: 右偏形态 ----
 ax = axes[1]
@@ -95,16 +90,39 @@ ax.legend(fontsize=8.5, loc='upper right'); ax.grid(alpha=0.3)
 
 # ---- ③ δv(r) 剂量曲线 ----
 ax = axes[2]
+# 真实数据点: 分雨强箱的实测平移量(箱内逐条 log 速度残差的中位, validate_06 同口径)
+rainy = np.where(kl != 'dry')[0]
+boxes = [(0.3, 1.0, '0.3-1'), (1.0, 4.0, '1-4'), (4.0, 12.0, '4-12'), (12.0, 1e9, '≥12')]
+# 基线: 同星期同钟点干日中位 log 速度
+dow_map = np.array([int(np.datetime64(d, 'D').view('int64')) % 7 for d in dates])
+mu0_how = np.zeros((7, 24))
+for k7 in range(7):
+    sel = np.where((kl == 'dry') & (dow_map == k7))[0]
+    for h in range(24):
+        mm = np.isin(spdD, sel) & (spdH == h) & (spdV > 1) & (spdV < 60)
+        mu0_how[k7, h] = np.median(np.log(spdV[mm])) if mm.sum() > 50 else np.nan
+pt_r, pt_dv, pt_n = [], [], []
+for lo, hi, nm in boxes:
+    bm = np.zeros((n, 24), bool)
+    bm[rainy] = (inten[rainy] >= lo) & (inten[rainy] < hi)
+    msk = bm[spdD, spdH] & (spdV > 1) & (spdV < 60)
+    base_h = mu0_how[dow_map[spdD], spdH]
+    ok = msk & ~np.isnan(base_h)
+    if ok.sum() > 200:
+        res = np.log(spdV[ok]) - base_h[ok]
+        pt_r.append(float(inten[bm].mean())); pt_dv.append(float(np.median(res))); pt_n.append(int(ok.sum()))
+        print(f'实测箱 {nm}mm/h: r̄={pt_r[-1]:.2f} δv={pt_dv[-1]:+.4f} n={pt_n[-1]:,}')
 rr = np.linspace(0, 30, 200)
-ax.plot(rr, dv(rr), lw=2.6, color=RED)
-for r_pt in [2.22, r_med, 15]:
-    ax.plot([r_pt], [dv(r_pt)], 'o', ms=8, color=NAVY, zorder=5)
-    ax.annotate(f'{dv(r_pt):+.3f}', (r_pt, dv(r_pt)), textcoords='offset points',
-                xytext=(6, 8), fontsize=9, color=NAVY)
+ax.plot(rr, dv(rr), lw=2.6, color=RED, label='公式(两点标定)')
+ax.plot(pt_r, pt_dv, 's', ms=10, color=NAVY, zorder=5, label='实测(分箱中位)')
+for x_, y_, nn in zip(pt_r, pt_dv, pt_n):
+    ax.annotate(f'{y_:+.3f} (n={nn//1000}k)', (x_, y_), textcoords='offset points',
+                xytext=(8, -4), fontsize=8.5, color=NAVY)
 ax.axhline(0, color=GREY, ls=':', lw=1)
 ax.set_xlabel('雨强 r (mm/h)'); ax.set_ylabel('μ 的平移量 δv(r)')
 ax.set_title('③ 平移量公式(全雨时池化标定)：$\delta_v$=-0.0221·ln(1+r/0.2)', fontsize=11.5, loc='left', color=NAVY)
 ax.text(0.97, 0.06, '注: 公式为全部雨时的平均效应; 本例强雨早峰实测减速更深(早峰×强雨交互)', transform=ax.transAxes, fontsize=8, color=MUTED, ha='right', bbox=dict(boxstyle='round,pad=0.3', fc='#FFF2CC', ec='#D6B656', alpha=0.9))
+ax.legend(fontsize=9, loc='upper left')
 ax.grid(alpha=0.3)
 
 fig.text(0.5, 0.002,
