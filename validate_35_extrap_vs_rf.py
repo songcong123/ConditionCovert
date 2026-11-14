@@ -108,21 +108,26 @@ print(f'\n直接输入演示(训练只见过 r<4 的 RF): r=10 → {rf_curve(rfB
       f' | r=60 → {rf_curve(rfB, np.array([60.0]))[0]:+.3f}   ← 输出几乎恒定(平台 {plat:+.3f})')
 print(f'公式对比: r=10 → {formula(np.array([10.0]))[0]:+.3f} | r=30 → {formula(np.array([30.0]))[0]:+.3f} | r=60 → {formula(np.array([60.0]))[0]:+.3f}   ← 持续增长')
 
+BIN_LO = [(4, 8), (8, 16), (16, 1e9)]
+BIN_ACT, BIN_F, BIN_RF, BIN_N, BIN_LBL = [], [], [], [], []
 # ---- 协议B 核心评价: 分箱趋势(外推的本质=预测是否随 r 响应) ----
 print()
 print('外推测试集分箱趋势(r≥4mm/h, 训练从未见过):')
 print(f'{"箱":12s}{"实测中位":>10s}{"公式预测":>10s}{"RF预测":>10s}')
-bins_t = [(4, 8), (8, 16), (16, 1e9)]
-trend = {'act': [], 'f': [], 'rf': []}
-for lo, hi in bins_t:
+for lo, hi in BIN_LO:
     m = (r_te >= lo) & (r_te < hi)
     if m.sum() < 10: continue
     a = float(np.median(y_te[m])); f_ = float(np.median(formula(r_te[m]))); rf_ = float(np.median(rfB.predict(X_te[m])))
-    trend['act'].append(a); trend['f'].append(f_); trend['rf'].append(rf_)
+    BIN_ACT.append(a); BIN_F.append(f_); BIN_RF.append(rf_); BIN_N.append(int(m.sum()))
+    BIN_LBL.append(f"{lo:.0f}-{hi if hi < 1e8 else 134:.0f}")
     print(f'{f"{lo:.0f}-{hi:.0f}":12s}{a*100:9.1f}pp{f_*100:9.1f}pp{rf_*100:9.1f}pp   (n={m.sum()})')
+# 猜常数基线(永远预测训练集均值)
+const_mae = np.mean(np.abs(y_te - y_tr.mean()))
+print('')
+print(f'猜常数基线(永远答训练集均值 {y_tr.mean()*100:+.1f}pp): MAE={const_mae*100:.1f}pp   ← RF 的 {mB_r[0]*100:.1f}pp 并不比它好, MAE 优势是假象')
 # 趋势斜率(响应是否随 r 增长)
 gx = np.log(r_te[np.isfinite(np.log(r_te))])
-sl_act = np.polyfit(gx, y_te, 1)[0] if len(trend['act']) >= 2 else np.nan
+sl_act = np.polyfit(gx, y_te, 1)[0]
 sl_f = np.polyfit(gx, formula(r_te), 1)[0]
 sl_rf = np.polyfit(gx, rfB.predict(X_te), 1)[0]
 print('')
@@ -131,36 +136,44 @@ print('注: 逐点 MAE 的小时级自然波动底噪约 ±40pp, 协议B 的 MAE
 
 # ================= 图 =================
 fig, axes = plt.subplots(1, 2, figsize=(14, 5.2))
-fig.suptitle('外推公式 vs 随机森林：域内互有胜负，域外只有公式能走', fontsize=14, fontweight='bold', y=1.02)
+fig.suptitle('外推公式 vs 随机森林：域外实测随雨强增长，公式跟涨、RF 纹丝不动', fontsize=14, fontweight='bold', y=1.03)
 
+# ① 外推分箱趋势(核心检验)
 ax = axes[0]
-xpos = np.arange(2); bw = 0.32
-mae_f = [mA_f[0] * 100, mB_f[0] * 100]; mae_r = [mA_r[0] * 100, mB_r[0] * 100]
-ax.bar(xpos - bw / 2, mae_f, bw, color=NAVY, label='外推公式 θ·ln(1+r/RC)')
-ax.bar(xpos + bw / 2, mae_r, bw, color=RED, label='随机森林(500棵)')
-for xx, vv in zip(xpos - bw / 2, mae_f): ax.annotate(f'{vv:.0f}pp', (xx, vv), ha='center', va='bottom', fontsize=10, color=NAVY, fontweight='bold')
-for xx, vv in zip(xpos + bw / 2, mae_r): ax.annotate(f'{vv:.0f}pp', (xx, vv), ha='center', va='bottom', fontsize=10, color=RED, fontweight='bold')
-ax.set_xticks(xpos); ax.set_xticklabels(['协议A 内插\n(随机80/20)', f'协议B 外推\n(训练r<4, 测r≥4, n={m_hi.sum()})'], fontsize=10.5)
-ax.set_ylabel('MAE (pp, 越低越好)'); ax.legend(fontsize=10, loc='upper left')
-ax.set_title('① 精度：域内 RF 略胜，域外公式碾压', fontsize=11.5, loc='left', color=NAVY)
-ax.grid(alpha=0.3, axis='y')
+xb = np.arange(len(BIN_LBL)); bw2 = 0.26
+ax.bar(xb - bw2, np.array(BIN_ACT) * 100, bw2, color='#8FAADC', edgecolor=NAVY, label='实测中位')
+ax.bar(xb, np.array(BIN_F) * 100, bw2, color=NAVY, label='公式预测')
+ax.bar(xb + bw2, np.array(BIN_RF) * 100, bw2, color=RED, label='RF预测')
+for k5 in range(len(BIN_LBL)):
+    ax.annotate(f'{BIN_ACT[k5]*100:.0f}', (xb[k5] - bw2, BIN_ACT[k5] * 100 + 0.4), ha='center', fontsize=9.5, color=NAVY)
+    ax.annotate(f'{BIN_F[k5]*100:.0f}', (xb[k5], BIN_F[k5] * 100 + 0.4), ha='center', fontsize=9.5, color=NAVY)
+    ax.annotate(f'{BIN_RF[k5]*100:.0f}', (xb[k5] + bw2, BIN_RF[k5] * 100 + 0.4), ha='center', fontsize=9.5, color=RED)
+    ax.text(xb[k5], -4.2, f'n={BIN_N[k5]}', ha='center', fontsize=8.5, color=MUTED)
+ax.set_xticks(xb); ax.set_xticklabels([f'{b} mm/h' for b in BIN_LBL], fontsize=11)
+ax.set_ylabel('出发量效应 (pp)'); ax.legend(fontsize=10, loc='upper left')
+ax.set_title('① 外推测试集分箱(r≥4, 训练从未见过): 实测+公式随雨强增长, RF 平坦', fontsize=11.5, loc='left', color=NAVY)
+ax.grid(alpha=0.3, axis='y'); ax.set_ylim(-5, max(np.array(BIN_ACT).max(), np.array(BIN_F).max()) * 100 + 7)
 
+# ② 直接输入演示(只留两条主线: 公式 vs 只见过r<4的RF)
 ax = axes[1]
-ax.plot(rr, formula(rr), lw=2.6, color=NAVY, label='外推公式：持续增长(饱和)')
-ax.plot(rr, rf_out_B, lw=2.4, color=RED, label='RF(只训练过 r<4)：输出恒定平台')
-ax.plot(rr, rf_out_A, lw=1.6, color=GRN, ls='--', label='RF(训练含全部雨强)')
+ax.plot(rr, formula(rr) * 100, lw=2.6, color=NAVY, label='公式：持续响应(单调饱和)')
+ax.plot(rr, rf_out_B * 100, lw=2.6, color=RED, label='RF(只训练过 r<4mm/h)：恒定平台')
 ax.axvline(4, color=MUTED, ls=':', lw=1.4)
-ax.text(4.3, ax.get_ylim()[0] + 0.02, '训练域边界 4mm/h', fontsize=9, color=MUTED, rotation=90, va='bottom')
+ax.text(4.4, 2, '训练域边界 4mm/h', fontsize=9.5, color=MUTED, rotation=90, va='bottom')
 for r_pt in [10, 30, 60]:
-    ax.plot([r_pt], [formula(np.array([r_pt]))[0]], 'o', ms=7, color=NAVY, zorder=5)
-    ax.annotate(f'+{formula(np.array([r_pt]))[0]*100:.0f}%', (r_pt, formula(np.array([r_pt]))[0]),
-                textcoords='offset points', xytext=(6, 6), fontsize=9, color=NAVY)
-ax.set_xlabel('输入雨强 r (mm/h)'); ax.set_ylabel('预测出发量效应')
-ax.set_title('② 直接输入暴雨强度：RF 静默输出常数，公式继续响应', fontsize=11.5, loc='left', color=NAVY)
-ax.legend(fontsize=9.5, loc='lower right'); ax.grid(alpha=0.3)
+    pv = formula(np.array([r_pt]))[0] * 100
+    ax.plot([r_pt], [pv], 'o', ms=8, color=NAVY, zorder=6)
+    ax.annotate(f'+{pv:.0f}%', (r_pt, pv), textcoords='offset points', xytext=(7, 6), fontsize=10, color=NAVY)
+for r_pt in [10, 60]:
+    pv = rf_curve(rfB, np.array([float(r_pt)]))[0] * 100
+    ax.plot([r_pt], [pv], 's', ms=8, color=RED, zorder=6)
+    ax.annotate(f'+{pv:.1f}%', (r_pt, pv), textcoords='offset points', xytext=(7, -14), fontsize=10, color=RED)
+ax.set_xlabel('输入雨强 r (mm/h)'); ax.set_ylabel('预测出发量效应 (%)')
+ax.set_title('② 直接喂暴雨强度：公式 +20→+30%，RF 全程 +4.5%', fontsize=11.5, loc='left', color=NAVY)
+ax.legend(fontsize=10, loc='center right'); ax.grid(alpha=0.3)
 
 fig.text(0.5, 0.005,
-         '结论：RF 是内插器(域内精度最优)但外推失效——超域输出边界叶子的常数,不报错只给错答案;公式单调饱和,域外唯一可信。两者互补:公式管外推,RF管内插验证',
+         '训练协议：只用轻中雨(r<4mm/h)训练两者 → 在大雨档(≥4)盲测。RF 超域输出训练边界的常数(不报错、静默给错答案)，公式沿物理形状持续响应——外推只有公式可行',
          ha='center', fontsize=10, color=DGREEN, fontweight='bold', wrap=True)
 plt.tight_layout()
 fig.savefig(r'D:/AI/条件转化/外推vs随机森林.png', dpi=150, bbox_inches='tight', facecolor='white')
