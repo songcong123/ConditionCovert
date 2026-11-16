@@ -26,7 +26,7 @@ const cols = [
 ];
 const rowsT = [
   ['出发量', '雨强 0.3~4 mm/h', '5.7', '6.3', '雨强 4~134 mm/h', '13.5', '2.3', '内 RF / 外 公式'],
-  ['速度', '雨强 0.3~4 mm/h', '2.9', '3.7', '雨强 4~134 mm/h', '3.3', '1.3', '内 RF / 外 公式'],
+  ['速度', '雨强 0.3~4 mm/h', '2.9', '3.7', '雨强 4~134 mm/h', '3.0', '2.0', '内 RF / 外 公式'],
   ['距离', '日降水 0.5~30 mm', '2.0', '2.5', '日降水 30~170 mm', '2.4', '1.0', '内 RF / 外 三旋钮'],
   ['空间', '263 区查表', '—', '—', 'γ(s,r) 公式', '—', '—', '查表 / γ 公式'],
 ];
@@ -41,7 +41,7 @@ cols.forEach(c => {
 s.addShape(p.shapes.RECTANGLE, { x: 1.4, y: y0 - 0.3, w: 3.05, h: 0.3, fill: { color: 'D6E4F0' }, line: { color: NAVY, width: 0.75 } });
 s.addText('内插（拟合 MAE，越小越好）', { x: 1.4, y: y0 - 0.3, w: 3.05, h: 0.3, fontSize: 10, fontFace: F, bold: true, color: NAVY, align: 'center', valign: 'middle', margin: 0 });
 s.addShape(p.shapes.RECTANGLE, { x: 4.45, y: y0 - 0.3, w: 3.15, h: 0.3, fill: { color: 'FDEADA' }, line: { color: 'ED7D31', width: 0.75 } });
-s.addText('外推（最差分箱偏差，越小越好）', { x: 4.45, y: y0 - 0.3, w: 3.15, h: 0.3, fontSize: 10, fontFace: F, bold: true, color: '843C0C', align: 'center', valign: 'middle', margin: 0 });
+s.addText('外推（≥16最重箱偏差，越小越好）', { x: 4.45, y: y0 - 0.3, w: 3.15, h: 0.3, fontSize: 10, fontFace: F, bold: true, color: '843C0C', align: 'center', valign: 'middle', margin: 0 });
 
 // 数据行
 const rh = 0.4;
@@ -100,7 +100,7 @@ s.addText([
 s.addShape(p.shapes.ROUNDED_RECTANGLE, { x: M, y: 6.3, w: W - 2 * M, h: 0.56, fill: { color: GREEN_BG }, line: { color: GREEN_LN, width: 1.3 }, rectRadius: 0.04 });
 s.addText([
   { text: '一句话裁决：', options: { bold: true, fontSize: 11.5, color: DGREEN } },
-  { text: '内插（见过）→ RF 与公式都准，选 RF（吃交互）；外推（没见过）→ 公式以 3~6 倍优势胜出——四个量全部成立，距离外推用三旋钮版', options: { fontSize: 11.5, color: TEXT } },
+  { text: '内插（见过）→ RF 与公式都准，选 RF（吃交互）；外推（没见过）→ 公式以 2~6 倍优势胜出(同箱对比)——四个量全部成立，距离外推用三旋钮版', options: { fontSize: 11.5, color: TEXT } },
 ], { x: M + 0.2, y: 6.3, w: W - 2 * M - 0.4, h: 0.56, fontFace: F, align: 'center', valign: 'middle', margin: 0 });
 
 p.writeFile({ fileName: 'D:/AI/条件转化/四量内外终版裁决_v2.pptx' }).then(() => console.log('saved'));
