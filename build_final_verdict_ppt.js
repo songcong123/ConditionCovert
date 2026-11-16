@@ -25,7 +25,7 @@ const cols = [
   { x: 7.6, w: 2.1, t: '最终分派' },
 ];
 const rowsT = [
-  ['出发量', '雨强 0.3~4 mm/h', '5.7', '6.3', '雨强 4~134 mm/h', '13.1', '2.3', '内 RF / 外 公式'],
+  ['出发量', '雨强 0.3~4 mm/h', '5.7', '6.3', '雨强 4~134 mm/h', '13.5', '2.3', '内 RF / 外 公式'],
   ['速度', '雨强 0.3~4 mm/h', '2.9', '3.7', '雨强 4~134 mm/h', '3.3', '1.3', '内 RF / 外 公式'],
   ['距离', '日降水 0.5~30 mm', '2.0', '2.5', '日降水 30~170 mm', '2.4', '1.0', '内 RF / 外 三旋钮'],
   ['空间', '263 区查表', '—', '—', 'γ(s,r) 公式', '—', '—', '查表 / γ 公式'],
@@ -91,9 +91,9 @@ s.addText([
 s.addShape(p.shapes.ROUNDED_RECTANGLE, { x: M, y: 4.78, w: 9.2, h: 1.28, fill: { color: YELLOW }, line: { color: YEL_LN, width: 1 }, rectRadius: 0.03 });
 s.addText([
   { text: '核心证据：外推域 RF 卡死 vs 公式跟涨（出发量, 实测 vs 预测）', options: { bold: true, fontSize: 10.5, color: '8C5A00', breakLine: true } },
-  { text: '雨强 4-8:   实际 +17.3%  ｜ RF +14.3(差3.0)  ｜ 公式 +17.6(差0.3) ← 差10倍', options: { fontSize: 9.5, breakLine: true } },
-  { text: '雨强 8-16: 实际 +22.7%  ｜ RF +15.3(差7.4)  ｜ 公式 +21.0(差1.7) ← 差4倍', options: { fontSize: 9.5, breakLine: true } },
-  { text: '雨强 ≥16:   实际 +24.8%  ｜ RF +13.5(差11.3) ｜ 公式 +26.2(差1.4) ← 差8倍', options: { fontSize: 9.5 } },
+  { text: '雨强 4-8:   实际 +16.7%  ｜ RF +11.4(差5.3)  ｜ 公式 +17.6(差0.9) ← 差6倍', options: { fontSize: 9.5, breakLine: true } },
+  { text: '雨强 8-16: 实际 +26.6%  ｜ RF +13.2(差13.4) ｜ 公式 +20.9(差5.7) ← 差2倍', options: { fontSize: 9.5, breakLine: true } },
+  { text: '雨强 ≥16:   实际 +23.8%  ｜ RF +10.3(差13.5) ｜ 公式 +26.1(差2.3) ← 差6倍', options: { fontSize: 9.5 } },
 ], { x: 0.55, y: 4.86, w: 8.9, h: 1.14, fontFace: F, color: TEXT, align: 'left', valign: 'top', margin: 0, lineSpacingMultiple: 1.2 });
 
 // ===== 底部结论 =====
@@ -103,4 +103,4 @@ s.addText([
   { text: '内插（见过）→ RF 与公式都准，选 RF（吃交互）；外推（没见过）→ 公式以 3~6 倍优势胜出——四个量全部成立，距离外推用三旋钮版', options: { fontSize: 11.5, color: TEXT } },
 ], { x: M + 0.2, y: 6.3, w: W - 2 * M - 0.4, h: 0.56, fontFace: F, align: 'center', valign: 'middle', margin: 0 });
 
-p.writeFile({ fileName: 'D:/AI/条件转化/四量内外终版裁决.pptx' }).then(() => console.log('saved'));
+p.writeFile({ fileName: 'D:/AI/条件转化/四量内外终版裁决_v2.pptx' }).then(() => console.log('saved'));
