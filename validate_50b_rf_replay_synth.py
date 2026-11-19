@@ -30,21 +30,10 @@ y_out = true_f(r_out) + rng.normal(0, 2.2, 46)
 rf = RandomForestRegressor(300, max_depth=8, min_samples_leaf=4, random_state=0, n_jobs=-1)
 rf.fit(r_in.reshape(-1, 1), y_in)
 
-# ---- 公式: 域内两箱两点标定 ----
-b1 = r_in < 1.0; b2 = r_in >= 1.0
-r1, y1 = r_in[b1].mean(), y_in[b1].mean()
-r2, y2 = r_in[b2].mean(), y_in[b2].mean()
-f = lambda RC: np.log1p(r1 / RC) / np.log1p(r2 / RC) - y1 / y2
-RC = brentq(f, 1e-3, 10)
-th = y1 / np.log1p(r1 / RC)
-formula = lambda r: th * np.log1p(np.asarray(r, float) / RC)
-
 rr = np.linspace(0.12, 40, 800)
 rf_curve = rf.predict(rr.reshape(-1, 1))
-fm_curve = formula(rr)
-print(f'两点标定: θ={th:.4f}, RC={RC:.3f}')
-print(f'r=10: 真实{true_f(10):.1f} RF{rf.predict([[10]])[0]:.1f} 公式{formula(10):.1f}')
-print(f'r=30: 真实{true_f(30):.1f} RF{rf.predict([[30]])[0]:.1f} 公式{formula(30):.1f}')
+print(f'r=10: 真实{true_f(10):.1f} RF{rf.predict([[10]])[0]:.1f}')
+print(f'r=30: 真实{true_f(30):.1f} RF{rf.predict([[30]])[0]:.1f}')
 
 # ================= 图 =================
 fig, ax = plt.subplots(figsize=(13, 7.4))
@@ -59,7 +48,6 @@ ax.axvline(4, color=RED, ls='--', lw=2.6, zorder=2)
 # 曲线
 ax.plot(rr, true_f(rr), color=NAVY_D, lw=3.2, zorder=5)
 ax.plot(rr, rf_curve, color=RED, lw=2.8, zorder=5)
-ax.plot(rr, fm_curve, color=GREEN, lw=2.6, ls='--', zorder=4)
 
 # 观测点
 ax.scatter(r_in, y_in, s=17, color='#9DB4CE', alpha=0.55, edgecolor='none', zorder=3)
@@ -74,7 +62,6 @@ ax.text(4.55, 0.8, '训练边界\nr = 4', fontsize=10.5, color=RED, fontweight='
 
 # ---- 曲线旁标签 ----
 ax.text(1.15, 10.2, '真实规律', fontsize=12.5, fontweight='bold', color=NAVY_D, rotation=52)
-ax.text(6.8, 19.0, '公式(两点标定)', fontsize=12, fontweight='bold', color=GREEN, rotation=25)
 ax.text(15.5, 16.2, 'RF', fontsize=15, fontweight='bold', color=RED)
 
 # ---- RF 平台标注 ----
