@@ -22,18 +22,18 @@ true_f = lambda r: 0.052 * np.log1p(np.asarray(r, float) / 0.2) * 100   # 真实
 
 # ---- 构造观测 ----
 r_in = rng.uniform(0.1, 4.0, 320)
-r_out = rng.uniform(4.2, 40, 46)
+r_out = rng.uniform(4.2, 15, 36)
 y_in = true_f(r_in) + rng.normal(0, 2.2, 320)
-y_out = true_f(r_out) + rng.normal(0, 2.2, 46)
+y_out = true_f(r_out) + rng.normal(0, 2.2, 36)
 
 # ---- RF: 只训练 r<4 ----
 rf = RandomForestRegressor(300, max_depth=8, min_samples_leaf=4, random_state=0, n_jobs=-1)
 rf.fit(r_in.reshape(-1, 1), y_in)
 
-rr = np.linspace(0.12, 40, 800)
+rr = np.linspace(0.12, 15, 800)
 rf_curve = rf.predict(rr.reshape(-1, 1))
 print(f'r=10: 真实{true_f(10):.1f} RF{rf.predict([[10]])[0]:.1f}')
-print(f'r=30: 真实{true_f(30):.1f} RF{rf.predict([[30]])[0]:.1f}')
+print(f'r=15: 真实{true_f(15):.1f} RF{rf.predict([[15]])[0]:.1f}')
 
 # ================= 图 =================
 fig, ax = plt.subplots(figsize=(13, 7.4))
@@ -42,7 +42,7 @@ fig.suptitle('为什么外推不能用随机森林：训练之后，它只会"�
 
 # 分区底色 + 边界
 ax.axvspan(-1.5, 4, color='#EAF1F9', zorder=0)
-ax.axvspan(4, 42, color='#FDF1E8', zorder=0)
+ax.axvspan(4, 16.5, color='#FDF1E8', zorder=0)
 ax.axvline(4, color=RED, ls='--', lw=2.6, zorder=2)
 
 # 曲线
@@ -54,35 +54,35 @@ ax.scatter(r_in, y_in, s=17, color='#9DB4CE', alpha=0.55, edgecolor='none', zord
 ax.scatter(r_out, y_out, s=26, color='#E8A47C', alpha=0.85, edgecolor='white', linewidth=0.4, zorder=3)
 
 # ---- 分区标题 ----
-ax.text(2.0, 31.8, 'RF 训练时见过的数据', ha='center', fontsize=13, fontweight='bold', color=NAVY)
-ax.text(2.0, 29.6, '(雨强 0~4, 320 个点)', ha='center', fontsize=10.5, color=MUTED)
-ax.text(23, 31.8, 'RF 从未见过的雨强', ha='center', fontsize=13, fontweight='bold', color='#843C0C')
-ax.text(23, 29.6, '(> 4, 橙色点是后来才发生的真实情况)', ha='center', fontsize=10.5, color=MUTED)
+ax.text(2.0, 24.6, 'RF 训练时见过的数据', ha='center', fontsize=13, fontweight='bold', color=NAVY)
+ax.text(2.0, 22.7, '(雨强 0~4, 320 个点)', ha='center', fontsize=10.5, color=MUTED)
+ax.text(10.3, 24.6, 'RF 从未见过的雨强', ha='center', fontsize=13, fontweight='bold', color='#843C0C')
+ax.text(10.3, 22.7, '(> 4, 橙点 = 后来发生的真实)', ha='center', fontsize=10.5, color=MUTED)
 ax.text(4.55, 0.8, '训练边界\nr = 4', fontsize=10.5, color=RED, fontweight='bold', va='bottom')
 
 # ---- 曲线旁标签 ----
 ax.text(1.15, 10.2, '真实规律', fontsize=12.5, fontweight='bold', color=NAVY_D, rotation=52)
-ax.text(15.5, 16.2, 'RF', fontsize=15, fontweight='bold', color=RED)
+ax.text(10.0, 16.1, 'RF', fontsize=15, fontweight='bold', color=RED)
 
 # ---- RF 平台标注 ----
-plat = rf.predict([[40.0]])[0]
-ax.annotate('RF 卡在边界值不动了\n(所有分裂点都在训练范围内,\n超范围 = 恒等输出边界值)',
-            xy=(30, plat), xytext=(22.5, 4.2), fontsize=10.5, color=RED,
+plat = rf.predict([[15.0]])[0]
+ax.annotate('RF 卡在边界值\n(分裂点全在训练范围内\n→ 输出恒 = 边界值)',
+            xy=(13, plat), xytext=(6.6, 2.8), fontsize=10, color=RED,
             arrowprops=dict(arrowstyle='->', color=RED, lw=1.8),
             bbox=dict(boxstyle='round,pad=0.45', fc='white', ec=RED, lw=1.2))
 
 # ---- 差距双向箭头 ----
-xg = 38
-ax.annotate('', xy=(xg, true_f(38)), xytext=(xg, plat),
+xg = 14.8
+ax.annotate('', xy=(xg, true_f(14.8)), xytext=(xg, plat),
             arrowprops=dict(arrowstyle='<->', color='#843C0C', lw=2.4))
-ax.text(xg - 0.5, (true_f(38) + plat) / 2, f'差 {true_f(38)-plat:.0f} 个百分点\n(RF 没跟上)',
-        ha='right', va='center', fontsize=11, fontweight='bold', color='#843C0C')
+ax.text(9.0, 17.6, f'差 {true_f(14.8)-plat:.0f} 个百分点 (RF 没跟上)',
+        ha='left', va='center', fontsize=11, fontweight='bold', color='#843C0C')
 
 # 域内也标一个"贴合"
 ax.text(1.35, -3.8, '域内: RF 贴合观测 ✓', fontsize=10.5, color=NAVY, fontweight='bold')
 
-ax.set_xlim(-1.5, 42)
-ax.set_ylim(-6.5, 34.5)
+ax.set_xlim(-1.5, 17)
+ax.set_ylim(-6.5, 27)
 ax.set_xlabel('雨强 (mm/h)', fontsize=12)
 ax.set_ylabel('出发量效应 (%, 相对晴天基线)', fontsize=12)
 ax.tick_params(labelsize=11)
