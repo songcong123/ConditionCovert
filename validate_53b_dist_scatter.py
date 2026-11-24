@@ -59,26 +59,26 @@ for lo, hi, cal in [(0.5, 5, 1), (5, 15, 1), (15, 30, 0), (30, 60, 0), (60, 200,
     ax.plot([Rs[m].mean()], [Ys[m].mean()], 's', ms=12, zorder=6,
             markerfacecolor=NAVY, markeredgecolor='white', markeredgewidth=1.4)
 
-ax.text(4.0, 3.0, '训练时见过\n(小中雨 <15mm/日)', ha='center', fontsize=16, fontweight='bold', color='#1F4E79')
-ax.text(70, 3.0, '没见过(大雨盲测)', ha='center', fontsize=16, fontweight='bold', color='#843C0C')
-ax.text(16.5, -11.6, '训练边界 15mm', fontsize=13, color='#C00000', fontweight='bold')
+ax.text(4.0, 3.0, '训练时见过\n(小中雨 <15mm/日)', ha='center', fontsize=20, fontweight='bold', color='#1F4E79')
+ax.text(70, 3.0, '没见过(大雨盲测)', ha='center', fontsize=20, fontweight='bold', color='#843C0C')
+ax.text(16.5, -11.6, '训练边界 15mm', fontsize=16, color='#C00000', fontweight='bold')
 
-ax.text(6.5, -2.0, '公式', fontsize=18, fontweight='bold', color=DGREEN, rotation=-14)
-ax.text(45, -4.3, 'RF：躺平', fontsize=17, fontweight='bold', color=ORANGE)
-ax.text(1.1, -7.3, '方块 = 分箱均值\n(散点噪声大,\n看方块走势)', fontsize=12.5, color=MUTED)
+ax.text(6.5, -2.0, '公式', fontsize=22, fontweight='bold', color=DGREEN, rotation=-14)
+ax.text(45, -4.3, 'RF：躺平', fontsize=21, fontweight='bold', color=ORANGE)
+ax.text(1.1, -7.3, '方块 = 分箱均值\n(散点噪声大,\n看方块走势)', fontsize=15, color=MUTED)
 
 ax.set_xscale('log')
 ax.set_xlim(0.4, 190)
 ax.set_ylim(-12.5, 4.5)
 ax.set_xticks([1, 5, 15, 50, 150])
 ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-ax.set_xlabel('日降水 (mm)', fontsize=16)
-ax.set_ylabel('中位距离效应 (%)', fontsize=16)
-ax.tick_params(labelsize=14)
+ax.set_xlabel('日降水 (mm)', fontsize=19)
+ax.set_ylabel('中位距离效应 (%)', fontsize=19)
+ax.tick_params(labelsize=17)
 ax.grid(alpha=0.25, which='both')
 fig.text(0.5, 0.005,
-         f'每个点 = 一个雨日(当日全部行程的中位距离 ÷ 同日型晴天基线 − 1), n={len(Rs)}天。蓝点=训练域, 橙点=盲测域。公式 {th:+.2f}·ln(1+R/{RC})(RC=全分布先验), RF只用<15mm训练。盲测域: 公式贴方块(差0.2~0.9pp), RF躺平(差1.4~5.3pp)',
-         ha='center', fontsize=12, color='#375623', fontweight='bold')
-plt.tight_layout(rect=[0, 0.045, 1, 1])
-fig.savefig(r'D:/AI/条件转化/距离外推公式胜_散点版.png', dpi=200, bbox_inches='tight', facecolor='white')
+         f'每个点 = 一个雨日(当日行程中位距离 ÷ 同日型晴天基线 − 1), n={len(Rs)}天; 蓝点=训练域, 橙点=盲测域\n公式 {th:+.2f}·ln(1+R/{RC})(RC先验), RF只用<15mm训练 | 盲测域: 公式贴方块(差0.2~0.9pp), RF躺平(差1.4~5.3pp)',
+         ha='center', va='bottom', fontsize=13.5, color='#375623', fontweight='bold')
+plt.tight_layout(rect=[0, 0.075, 1, 1])
+fig.savefig(r'D:/AI/条件转化/距离外推公式胜_散点版.png', dpi=200, facecolor='white')
 print('saved 距离外推公式胜_散点版.png')
