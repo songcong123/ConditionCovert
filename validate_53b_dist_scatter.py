@@ -59,8 +59,8 @@ for lo, hi, cal in [(0.5, 5, 1), (5, 15, 1), (15, 30, 0), (30, 60, 0), (60, 200,
     ax.plot([Rs[m].mean()], [Ys[m].mean()], 's', ms=12, zorder=6,
             markerfacecolor=NAVY, markeredgecolor='white', markeredgewidth=1.4)
 
-ax.text(4.0, 3.0, '训练时见过\n(小中雨 <15mm/日)', ha='center', fontsize=20, fontweight='bold', color='#1F4E79')
-ax.text(70, 3.0, '没见过(大雨盲测)', ha='center', fontsize=20, fontweight='bold', color='#843C0C')
+ax.text(4.0, 2.3, '训练时见过\n(小中雨 <15mm/日)', ha='center', fontsize=20, fontweight='bold', color='#1F4E79')
+ax.text(70, 3.6, '没见过(大雨盲测)', ha='center', fontsize=20, fontweight='bold', color='#843C0C')
 ax.text(16.5, -11.6, '训练边界 15mm', fontsize=16, color='#C00000', fontweight='bold')
 
 ax.text(6.5, -2.0, '公式', fontsize=22, fontweight='bold', color=DGREEN, rotation=-14)
@@ -69,7 +69,7 @@ ax.text(1.1, -7.3, '方块 = 分箱均值\n(散点噪声大,\n看方块走势)',
 
 ax.set_xscale('log')
 ax.set_xlim(0.4, 190)
-ax.set_ylim(-12.5, 4.5)
+ax.set_ylim(-12.5, 5.0)
 ax.set_xticks([1, 5, 15, 50, 150])
 ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 ax.set_xlabel('日降水 (mm)', fontsize=19)
