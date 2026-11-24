@@ -76,9 +76,9 @@ ax.set_xlabel('日降水 (mm)', fontsize=19)
 ax.set_ylabel('中位距离效应 (%)', fontsize=19)
 ax.tick_params(labelsize=17)
 ax.grid(alpha=0.25, which='both')
-fig.text(0.5, 0.005,
+fig.text(0.5, 0.012,
          f'每个点 = 一个雨日(当日行程中位距离 ÷ 同日型晴天基线 − 1), n={len(Rs)}天; 蓝点=训练域, 橙点=盲测域\n公式 {th:+.2f}·ln(1+R/{RC})(RC先验), RF只用<15mm训练 | 盲测域: 公式贴方块(差0.2~0.9pp), RF躺平(差1.4~5.3pp)',
          ha='center', va='bottom', fontsize=13.5, color='#375623', fontweight='bold')
-plt.tight_layout(rect=[0, 0.075, 1, 1])
+plt.tight_layout(rect=[0, 0.12, 1, 1])
 fig.savefig(r'D:/AI/条件转化/距离外推公式胜_散点版.png', dpi=200, facecolor='white')
 print('saved 距离外推公式胜_散点版.png')
